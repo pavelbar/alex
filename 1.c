@@ -33,27 +33,31 @@ int correctly(char nameVariable) {
 
 
 int main() {
-    int M = 0;
-    printf("Enter dividend M (int)\n");//делимое
-    printf("Press ENTER to input mode");
-    getchar();
-    M = correctly('M');
+    while (1) {
+        int M = 0;
+        printf("Enter dividend M (int)\n\n");//делимое
+        printf("Press ENTER to input mode");
+        getchar();
+        M = correctly('M');
 
-    int N = 0;
-    printf("Enter divider N (int)\n");//делитель
-    printf("Press ENTER to input mode");
-    getchar();
-    N = correctly('N');
+        int N = 0;
+        printf("Enter divider N (int)\n\n");//делитель
+        printf("Press ENTER to input mode");
+        getchar();
+        N = correctly('N');
 
-    system("cls");
-    printf("N = %d, M = %d \n", M, N);
-    printf("M / N = ");
-    if (M % N == 0) {
-        printf("%d", M / N);
-    } else {
-        printf("Error. Non null");
+        system("cls");
+        printf("N = %d\nM = %d \n", M, N);
+        printf("M / N = ");
+        if (M % N == 0) {
+            printf("%d\n", M / N);
+        } else {
+            printf("Error. Not null\n");
+        }
+
+        printf("\nJob done. Press ENTER");
+        getchar();
+        system("cls");
     }
-
-    getchar();
     return 0;
 }
