@@ -54,7 +54,7 @@ void isTwoDigit(int num) { //Task 18
     printf(" Center Digit =%d\n", centerDigit);
     printf(" Sum =%d\n", sum);
 
-    if (getLengthNumber(sum) == 2) {
+    if (getLengthNumber(sum) == 3) {
         puts(" All right. Sum is Two Digit");
     } else {
         puts(" Error. Sum is NOT Two Digit");
