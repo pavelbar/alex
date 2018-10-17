@@ -1,3 +1,5 @@
+#define METERS_IN_KILOMMETER 1000
+
 #include <stdio.h>
 #include <windows.h>
 
@@ -28,7 +30,7 @@ int correctly(char nameVariable) {
 
 
 void compareSpeed(int kmH, int mS) {        //Task 8
-    double speedTwoKm = mS / 1000;
+    double speedTwoKm = mS / METERS_IN_KILOMMETER;
 
     printf("\n speed 2 (Km/H) = %f\n", speedTwoKm);
 
