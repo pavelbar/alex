@@ -7,7 +7,7 @@
 
 void correctly(char nameVariable, float *number) {
     system("cls");
-    printf("MODE: Input DOUBLE Variable %c\n\n%c = ", nameVariable, nameVariable);
+    printf("MODE: Input FLOAT Variable %c\n\n%c = ", nameVariable, nameVariable);
     int flag = 0;
     float answer = 0;
 
@@ -43,7 +43,7 @@ void solution(float number) {       //Task28
 int main() {
     while (1) {
         float number = 0;
-        printf("Enter double number (double)\n\n");
+        printf("Enter double number (FLOAT)\n\n");
         printf("Press ENTER to input mode");
         getchar();
         correctly('A', &number);
