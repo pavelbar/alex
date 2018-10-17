@@ -12,11 +12,16 @@ int correctly(char nameVariable) {
     int flag = 0;
     int answer = 0;
 
-    while (flag != 1) {
+    while (1) {
         flag = scanf("%d", &answer);
         fflush(stdin);
         if (flag == 1) {
-            printf("Variable %c correctly! \n\n", nameVariable);
+            if ((nameVariable == 'N') && (answer == 0)) {
+                printf("Variable %c not correctly! Try again. \n%c = ", nameVariable, nameVariable);
+            } else {
+                printf("Variable %c correctly! \n\n", nameVariable);
+                break;
+            }
         } else {
             printf("Variable %c not correctly! Try again. \n%c = ", nameVariable, nameVariable);
         }
