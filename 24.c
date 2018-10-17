@@ -59,9 +59,9 @@ void isMultipleOfFour(int num) { //Task 24
     printf(" Multiple =%d\n", mult);
 
     if (mult % 4 == 0) {
-        puts(" All right. Humber is Multiple Of Four");
+        puts(" All right. Number is Multiple Of Four");
     } else {
-        puts(" Error. Humber is NOT Multiple Of Four");
+        puts(" Error. Number is NOT Multiple Of Four");
     }
 }
 
