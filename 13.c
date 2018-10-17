@@ -43,7 +43,7 @@ int correctly(char nameVariable) {
 }
 
 
-void equalFirstAndLastDigit(int num) { //Task 13
+void solution(int num) { //Task 13
     int rightDigit = abs(num) % 10;
     int leftDigit = abs(num) / 10;
     int squaredNumber = num * num;
@@ -73,7 +73,7 @@ int main() {
         system("cls");
         printf("digit = %d\n", num);
 
-        equalFirstAndLastDigit(num);
+        solution(num);
 
         printf("\nJob done. Press ENTER");
         getchar();
