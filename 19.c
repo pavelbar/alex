@@ -65,7 +65,7 @@ void isTwoDigit(int num) { //Task 19
 int main() {
     while (1) {
         int num = 0;
-        printf("Enter digit (int, length = 2)\n\n");
+        printf("Enter digit (int, length = 3)\n\n");
         printf("Press ENTER to input mode");
         getchar();
         num = correctly('A');
