@@ -35,9 +35,9 @@ void naturalNumberIsOdd(int number) {       //Task25
     printf("\n Last digit = %d\n", digit);
 
     if (digit % 2 != 0) {
-        puts(" All right. Natural Number Is Odd");
+        puts(" All right. Last Number Is Odd");
     } else {
-        puts(" Error. Natural Number Is NOT Odd");
+        puts(" Error. Lost Number Is NOT Odd");
     }
 }
 
