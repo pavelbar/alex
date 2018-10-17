@@ -1,20 +1,16 @@
-
 #include <stdio.h>
-#include <conio.h>
 #include <windows.h>
-
 
 /*
  * Если целое число М делится нацело на целое N, то вывести на экран частное от деления,
  * в противном случае вывести сообщение «M на N не делится без остатка».
  */
 
-
 int correctly(char nameVariable) {
     system("cls");
-    printf("MODE: Input Variable %c\n\n%c = ", nameVariable, nameVariable);
+    printf("MODE: Input INT Variable %c\n\n%c = ", nameVariable, nameVariable);
     int flag = 0;
-    int answer;
+    int answer = 0;
 
     while (flag != 1) {
         flag = scanf("%d", &answer);
@@ -32,9 +28,19 @@ int correctly(char nameVariable) {
 }
 
 
+void divisionWithoutRemainder(int N, int M) {     //Task 1
+    if (M % N == 0) {
+        printf("%d\n", M / N);
+    } else {
+        puts("Error. Not null\n");
+    }
+}
+
+
 int main() {
     while (1) {
         int M = 0;
+
         printf("Enter dividend M (int)\n\n");//делимое
         printf("Press ENTER to input mode");
         getchar();
@@ -47,13 +53,9 @@ int main() {
         N = correctly('N');
 
         system("cls");
-        printf("N = %d\nM = %d \n", M, N);
-        printf("M / N = ");
-        if (M % N == 0) {
-            printf("%d\n", M / N);
-        } else {
-            printf("Error. Not null\n");
-        }
+        printf("N = %d\nM = %d \n M / N = ", M, N);
+
+        divisionWithoutRemainder(N, M);
 
         printf("\nJob done. Press ENTER");
         getchar();
