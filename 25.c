@@ -37,7 +37,7 @@ void naturalNumberIsOdd(int number) {       //Task25
     if (digit % 2 != 0) {
         puts(" All right. Last Number Is Odd");
     } else {
-        puts(" Error. Lost Number Is NOT Odd");
+        puts(" Error. Last Number Is NOT Odd");
     }
 }
 
