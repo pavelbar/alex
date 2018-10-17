@@ -45,14 +45,12 @@ void compareSpeed(int kmH, int mS) {        //Task 8
 int main() {
     while (1) {
         double speedOneKmH = 0;
-
         printf("Enter speed 1 (Km/H) (int)\n\n");
         printf("Press ENTER to input mode");
         getchar();
         speedOneKmH = correctly('A');
 
         double speedTwoMs = 0;
-
         printf("Enter speed 2 (M/s) (int)\n\n");
         printf("Press ENTER to input mode");
         getchar();
