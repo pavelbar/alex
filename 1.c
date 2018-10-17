@@ -40,7 +40,6 @@ void divisionWithoutRemainder(int N, int M) {     //Task 1
 int main() {
     while (1) {
         int M = 0;
-
         printf("Enter dividend M (int)\n\n");//делимое
         printf("Press ENTER to input mode");
         getchar();
