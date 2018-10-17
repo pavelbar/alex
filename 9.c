@@ -47,7 +47,6 @@ void compareArea(int radius, int length) {      //Task 9
 int main() {
     while (1) {
         double radius = 0;
-
         printf("Enter radius for circle (int > 0)\n\n");
         printf("Press ENTER to input mode");
         getchar();
