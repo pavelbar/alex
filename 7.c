@@ -45,7 +45,7 @@ void compareDistances(int km, int foot) {       //Task7
 int main() {
     while (1) {
         double distanceOneKm = 0;
-        printf("Enter distance 1 (Km) (int>=0)\n\n");
+        printf("Enter distance 1 (Km) (int>0)\n\n");
         printf("Press ENTER to input mode");
         getchar();
         distanceOneKm = correctly('A');
