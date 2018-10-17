@@ -43,7 +43,7 @@ int correctly(char nameVariable) {
 }
 
 
-void isTwoDigitNumber(int num) { //Task 15
+void multipleOfThree(int num) { //Task 15
     int rightDigit = abs(num) % 10;
     int leftDigit = abs(num) / 10;
     int sum = rightDigit + leftDigit;
@@ -72,7 +72,7 @@ int main() {
         system("cls");
         printf("digit = %d\n", num);
 
-        isTwoDigitNumber(num);
+        multipleOfThree(num);
 
         printf("\nJob done. Press ENTER");
         getchar();
