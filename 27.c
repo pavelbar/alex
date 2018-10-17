@@ -27,7 +27,7 @@ void correctly(char nameVariable, float *number) {
 }
 
 
-void solution(double number) {       //Task27
+void solution(float number) {       //Task27
     int wholePart = number;
     int last = wholePart % 10;
 
