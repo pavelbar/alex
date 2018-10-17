@@ -27,7 +27,7 @@ void correctly(char nameVariable, float *number) {
 }
 
 
-void solution(double number) {       //Task28
+void solution(float number) {       //Task28
     int wholePart = number;
 
     printf("\n Whole Part = %d\n", wholePart);
