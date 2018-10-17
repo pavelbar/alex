@@ -39,7 +39,6 @@ void lastDigitIsEven(int A) {       //Task 5
 int main() {
     while (1) {
         int A = 0;
-
         printf("Enter digit A (int)\n\n");
         printf("Press ENTER to input mode");
         getchar();
