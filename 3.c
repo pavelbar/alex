@@ -2,7 +2,7 @@
 #include <windows.h>
 
 /*
- * Дано целое число. Определить является ли оно четным и оканчивается ли оно а 4.
+ * Дано целое число. Определить является ли оно четным и оканчивается ли оно на 4.
  */
 
 int correctly(char nameVariable) {
@@ -27,18 +27,19 @@ int correctly(char nameVariable) {
 }
 
 
-void evenOrEndFour(int A) {     //Task 3
-    if (A % 2 == 0) {
-        puts(" All right. A is Even");
-    } else {
-        puts(" Error. A is NOT Even");
-    }
+int isEven(int number) {
+    return number % 2 == 0 ? 1 : 0;
+}
 
-    if (A % 10 == 4) {
-        puts(" All right. Lost is 4");
-    } else {
-        puts(" Error. Lost is NOT 4");
-    }
+
+int getLastDigit(int number) {
+    return number % 10;
+}
+
+void solution(int number) {     //Task 3
+    isEven(number) ? puts(" All right. A is Even") : puts(" Error. A is NOT Even");
+
+    getLastDigit(number) == 4 ? puts(" All right. Lost is 4") : puts(" Error. A is NOT Even");
 }
 
 
@@ -53,7 +54,7 @@ int main() {
         system("cls");
         printf("A = %d\n", A);
 
-        evenOrEndFour(A);
+        solution(A);
 
         printf("\nJob done. Press ENTER");
         getchar();
