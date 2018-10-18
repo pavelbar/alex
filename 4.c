@@ -27,18 +27,20 @@ int correctly(char nameVariable) {
 }
 
 
-void oddOrEndSeven(int A) {     //Task 4
-    if (A % 2 == 1) {
-        puts(" All right. A is NOT Even");
-    } else {
-        puts(" Error. A is Even");
-    }
+int isEven(int number) {
+    return number % 2 == 0 ? 1 : 0;
+}
 
-    if (A % 10 == 7) {
-        puts(" All right. Lost is 7");
-    } else {
-        puts(" Error. Lost is NOT 7");
-    }
+
+int getLastDigit(int number) {
+    return number % 10;
+}
+
+
+void solution(int number) {     //Task 4
+    isEven(number) ? puts(" Error. A is NOT odd") : puts(" All right. A is odd");
+
+    getLastDigit(number) == 7 ? puts(" All right. Lost is 7") : puts(" Error. Lost is not 7");
 }
 
 
@@ -53,7 +55,7 @@ int main() {
         system("cls");
         printf("A = %d\n", A);
 
-        oddOrEndSeven(A);
+        solution(A);
 
         printf("\nJob done. Press ENTER");
         getchar();
