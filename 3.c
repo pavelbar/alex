@@ -39,7 +39,7 @@ int getLastDigit(int number) {
 void solution(int number) {     //Task 3
     isEven(number) ? puts(" All right. A is Even") : puts(" Error. A is NOT Even");
 
-    getLastDigit(number) == 4 ? puts(" All right. Lost is 4") : puts(" Error. A is NOT Even");
+    getLastDigit(number) == 4 ? puts(" All right. Lost is 4") : puts(" Error. A is NOT 4");
 }
 
 
