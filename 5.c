@@ -26,9 +26,17 @@ int correctly(char nameVariable) {
     return answer;
 }
 
+int isEven(int number) {
+    return number % 2 == 0 ? 1 : 0;
+}
 
-void lastDigitIsEven(int A) {       //Task 5
-    if (A % 10 % 2 == 0) {
+
+int getLastDigit(int number) {
+    return number % 10;
+}
+
+void solution(int number) {       //Task 5
+    if (isEven(getLastDigit(number))) {
         puts(" All right. Last from A is Even");
     } else {
         puts(" Error. Last from A is NOT Even");
@@ -47,7 +55,7 @@ int main() {
         system("cls");
         printf("A = %d\n", A);
 
-        lastDigitIsEven(A);
+        solution(A);
 
         printf("\nJob done. Press ENTER");
         getchar();
