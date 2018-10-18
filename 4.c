@@ -31,6 +31,10 @@ int isEven(int number) {
     return number % 2 == 0 ? 1 : 0;
 }
 
+int isOdd(int number) {
+    return !isEven(number);
+}
+
 
 int getLastDigit(int number) {
     return number % 10;
@@ -38,9 +42,9 @@ int getLastDigit(int number) {
 
 
 void solution(int number) {     //Task 4
-    isEven(number) ? puts(" Error. A is NOT odd") : puts(" All right. A is odd");
+    isOdd(number) ? puts(" All right. A is odd") : puts(" Error. A is NOT odd");
 
-    getLastDigit(number) == 7 ? puts(" All right. Lost is 7") : puts(" Error. Lost is not 7");
+    isOdd(number) == 7 ? puts(" All right. Lost is 7") : puts(" Error. Lost is not 7");
 }
 
 
