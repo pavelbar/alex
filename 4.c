@@ -32,7 +32,7 @@ int isEven(int number) {
 }
 
 int isOdd(int number) {
-    return !isEven(number);
+    return !!!isEven(number);
 }
 
 
