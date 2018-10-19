@@ -662,6 +662,76 @@ void task14() {
     jobDone();
 }
 
+//
+
+void solution15(int num) { //Task 15
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
+    int sum = rightDigit + leftDigit;
+
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" Sum left and right digit =%d\n", sum);
+
+    if (sum % 3 == 0) {
+        puts(" All right. Sum is multiple of three");
+    } else {
+        puts(" Error. Sum is NOT multiple of three");
+    }
+}
+
+void task15() {
+    //Дано двузначное число. Определить, кратна ли трем сумма его цифр.
+    int task = 15;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 2)\n\n");
+    num = correctly('A', 2, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution15(num);
+
+    jobDone();
+}
+
+//
+
+void solution16(int num) { //Task 16
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+
+    if (rightDigit == leftDigit) {
+        puts(" All right. Digit is palindrome");
+    } else {
+        puts(" Error. Digit is NOT palindrome");
+    }
+}
+
+void task16() {
+    //  Дано трехзначное число. Выяснить, является ли оно палиндромом («перевертышем»),
+    //  то есть числом, десятичная запись которого читается одинаково слева направо и справа налево
+    int task = 16;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 3)\n\n");
+    num = correctly('A', 3, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution16(num);
+
+    jobDone();
+}
+
 //###############################################################
 //########################### MAIN ##############################
 //###############################################################
@@ -748,6 +818,13 @@ int main() {
             task14();
         }
 
+        if (select == 15) {
+            task15();
+        }
+
+        if (select == 16) {
+            task16();
+        }
 
         //*****************
 
