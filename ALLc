@@ -135,7 +135,7 @@ void jobDone(){
 }
 
 //###############################################################
-//###############################################################
+//################ Solution Functions ###########################
 //###############################################################
 
 int isEven(int number) {
@@ -181,8 +181,12 @@ double getDiametrCircleFromRadius(double radius) {
     return radius * 2;
 }
 
+int getFirstDigit(int number) {
+    return number / pow(10, getLengthNumber(number) - 1);
+}
+
 //###############################################################
-//###############################################################
+//###################### SOLUTIONS ##############################
 //###############################################################
 
 void solution1(int N, int M) {     //Task 1
@@ -517,9 +521,43 @@ void task10() {
     jobDone();
 }
 
+//
+
+void solution11(int num) { //Task 11
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+
+    if (leftDigit < rightDigit) {
+        puts(" Left Digit < Right Digit");
+    } else {
+        puts(" Left Digit >= Right Digit");
+    }
+}
+
+void task11() {
+    // Дано двухзначное число. Определить какая из его цифр больше 1 или 2
+    int task = 11;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 2)\n\n");
+    num = correctly('A', 2, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution11(num);
+
+    printf("\nJob done. Press ENTER");
+    getchar();
+    system("cls");
+}
 
 //###############################################################
-//###############################################################
+//########################### MAIN ##############################
 //###############################################################
 
 int main() {
@@ -579,6 +617,19 @@ int main() {
         if (select == 8) {
             task8();
         }
+
+        if (select == 9) {
+            task9();
+        }
+
+        if (select == 10) {
+            task10();
+        }
+
+        if (select == 11) {
+            task11();
+        }
+
         //*****************
 
     }
