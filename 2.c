@@ -8,7 +8,7 @@
 void myCls() {
     system("cls");
     puts("************************************************************\n"
-         "*Nizhniy Novgorod Technical University*\n*Study work number 2. Task number 1."
+         "*Nizhniy Novgorod Technical University*\n*Study work number 2. Task number 2."
          "*\n *Performed student 18 - IVT - 2. Kornilov Alexey "
          "*\n************************************************************\n");
 }
