@@ -42,10 +42,25 @@ int correctly(char nameVariable) {
     return answer;
 }
 
+int getLastDigit(int number) {
+    return abs(number % 10);
+}
+
+
+int getFirstDigit(int number) {
+    number = abs(number);
+    int first = 0;
+    while (number > 0) {
+        first = number % 10;
+        number = number / 10;
+    }
+    return first;
+}
 
 void solution(int num) { //Task 13
-    int rightDigit = abs(num) % 10;
-    int leftDigit = abs(num) / 10;
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
+    
     int squaredNumber = num * num;
     int result = 4 * (leftDigit * leftDigit * leftDigit + rightDigit * rightDigit * rightDigit);
 
