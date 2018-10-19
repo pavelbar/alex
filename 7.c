@@ -31,17 +31,17 @@ int correctly(char nameVariable) {
 }
 
 
-double footToKm(int distance) {
+double footsToKm(int distance) {
     return distance * FOOTS_IN_KILOMMETER;
 }
 
 
 void solution(int km, int foot) {       //Task7
-    double footsToKm = footToKm(foot);
+    double valFootsToKm = footsToKm(foot);
 
-    printf("\n distance 2 (KM) = %f\n", footsToKm);
+    printf("\n distance 2 (KM) = %f\n", valFootsToKm);
 
-    if (km < footsToKm) {
+    if (km < valFootsToKm) {
         puts(" distance 1 < distance 2");
     } else {
         puts(" distance 1 >= distance 2");
