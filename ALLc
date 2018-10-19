@@ -551,9 +551,7 @@ void task11() {
 
     solution11(num);
 
-    printf("\nJob done. Press ENTER");
-    getchar();
-    system("cls");
+    jobDone();
 }
 
 //
@@ -586,12 +584,47 @@ void task12() {
 
     solution12(num);
 
-    printf("\nJob done. Press ENTER");
-    getchar();
-    system("cls");
-
+    jobDone();
 }
 
+//
+
+void solution13(int num) { //Task 13
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
+
+    int squaredNumber = num * num;
+    int result = 4 * (leftDigit * leftDigit * leftDigit + rightDigit * rightDigit * rightDigit);
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" squared Number =%d\n", squaredNumber);
+    printf(" quadruple sum of cubes =%d\n", result);
+
+    if (squaredNumber == result) {
+        puts(" All right. Equal");
+    } else {
+        puts(" Error. NOT Equal");
+    }
+}
+
+void task13() {
+    // Дано двузначное число. Определить, равен ли квадрат этого числа учетверенной сумме кубов его цифр.
+    int task = 13;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 2)\n\n");
+    myCls(task);
+    num = correctly('A', 2, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution13(num);
+
+    jobDone();
+}
 
 //###############################################################
 //########################### MAIN ##############################
@@ -668,8 +701,17 @@ int main() {
         }
 
         if (select == 12) {
-            task11();
+            task12();
         }
+
+        if (select == 13) {
+            task13();
+        }
+
+        if (select == 14) {
+            task14();
+        }
+
 
         //*****************
 
