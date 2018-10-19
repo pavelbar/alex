@@ -556,6 +556,43 @@ void task11() {
     system("cls");
 }
 
+//
+
+void solution12(int num) { //Task 12
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+
+    if (leftDigit == rightDigit) {
+        puts(" All right. Left Digit equal Right Digit");
+    } else {
+        puts(" Error. Left Digit NOT equal Right Digit");
+    }
+}
+
+void task12() {
+    // Дано двузначное число. Определить, одинаковы ли его цифры.
+    int task = 12;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 2)\n\n");
+    num = correctly('A', 2, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution12(num);
+
+    printf("\nJob done. Press ENTER");
+    getchar();
+    system("cls");
+
+}
+
+
 //###############################################################
 //########################### MAIN ##############################
 //###############################################################
@@ -627,6 +664,10 @@ int main() {
         }
 
         if (select == 11) {
+            task11();
+        }
+
+        if (select == 12) {
             task11();
         }
 
