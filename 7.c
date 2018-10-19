@@ -1,3 +1,5 @@
+#define FOOTS_IN_KILOMMETER 0.45
+
 #include <stdio.h>
 #include <windows.h>
 
@@ -30,14 +32,16 @@ int correctly(char nameVariable) {
 
 
 double footToKm(int distance) {
-    return distance * 0.45;
+    return distance * FOOTS_IN_KILOMMETER;
 }
 
 
 void solution(int km, int foot) {       //Task7
-    printf("\n distance 2 (KM) = %f\n", footToKm(foot));
+    double footsToKm = footToKm(foot);
 
-    if (km < footToKm(foot)) {
+    printf("\n distance 2 (KM) = %f\n", footsToKm);
+
+    if (km < footsToKm) {
         puts(" distance 1 < distance 2");
     } else {
         puts(" distance 1 >= distance 2");
