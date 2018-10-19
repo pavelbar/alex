@@ -124,6 +124,11 @@ int correctly(char nameVariable, int len, int lim) {
     return answer;
 }
 
+void jobDone(){
+    puts("\nJob done.");
+    sleep();
+}
+
 //###############################################################
 //###############################################################
 //###############################################################
@@ -157,6 +162,7 @@ void task1() {
     // Если целое число М делится нацело на целое N, то вывести на экран частное от деления,
     // в противном случае вывести сообщение «M на N не делится без остатка».
     int task = 1;
+
     myCls(task);
     int M = 0;
     printf("--> Enter dividend M\n\n");//делимое
@@ -172,8 +178,7 @@ void task1() {
 
     solution1(N, M);
 
-    puts("\nJob done.");
-    sleep();
+    jobDone();
 }
 
 void solution2(int A, int B) {       //Task 2
@@ -189,6 +194,7 @@ void solution2(int A, int B) {       //Task 2
 void task2() {
     // Является ли число А делителем Б
     int task = 2;
+
     myCls(task);
     int B = 0;
     printf("Enter dividend B (int)\n\n");//делимое
@@ -204,8 +210,7 @@ void task2() {
 
     solution2(A, B);
 
-    puts("\nJob done.");
-    sleep();
+    jobDone();
 }
 
 //
@@ -219,6 +224,7 @@ void solution3(int number) {     //Task 3
 void task3() {
     // Дано целое число. Определить является ли оно четным и оканчивается ли оно на 4.
     int task = 3;
+
     myCls(task);
     int A = 0;
     printf("Enter digit A (int)\n\n");
@@ -229,8 +235,7 @@ void task3() {
 
     solution3(A);
 
-    puts("\nJob done.");
-    sleep();
+    jobDone();
 }
 
 //
@@ -243,8 +248,8 @@ void solution4(int number) {     //Task 4
 
 void task4() {
     // Дано целое число. Определить является ли оно НЕчетным и оканчивается ли оно цифрой 7.
-
     int task = 4;
+
     myCls(task);
     int A = 0;
     printf("Enter digit A (int)\n\n");
@@ -255,8 +260,7 @@ void task4() {
 
     solution4(A);
 
-    puts("\nJob done.");
-    sleep();
+    jobDone();
 }
 
 //
@@ -272,6 +276,7 @@ void solution5(int number) {       //Task 5
 void task5(){
     // Дано целое число. Определить оканчивается ли оно четной цифрой (составное условие не использовать).
     int task = 5;
+
     myCls(task);
     int A = 0;
     printf("Enter digit A (int)\n\n");
@@ -282,10 +287,53 @@ void task5(){
 
     solution5(A);
 
-    puts("\nJob done.");
-    sleep();
+    jobDone();
 }
 
+//
+
+void solution6(int yearBirth, int monthBirth, int yearNow, int monthNow) {       //Task6
+    int age = yearNow - yearBirth;
+    if (monthNow < monthBirth) {
+        age--;
+    }
+
+    printf("\n Age = %d\n", age);
+}
+
+void task6(){
+    //  Известны год и месяц рождения человека, а также год и номер месяца сегодняшнего дня. Определить возраст человека,
+    //  число полных лет. В случае совпадения указанных месяцев считать, что прошел полный год.
+    int task = 6;
+
+    myCls(task);
+    int yearBirth = 0;
+    printf("Enter year of birth (int>0)\n\n");
+    yearBirth = correctly('A', 0, 2);
+
+    myCls(task);
+    int monthBirth = 0;
+    printf("Enter month of birth (int>=0)\n\n");
+    monthBirth = correctly('B', 0, 2);
+
+    myCls(task);
+    int yearNow = 0;
+    printf("Enter year now (int>=0)\n\n");
+    yearNow = correctly('C', 0, 2);
+
+    myCls(task);
+    int monthNow = 0;
+    printf("Enter month now (int>=0)\n\n");
+    monthNow = correctly('D', 0, 2);
+
+    myCls(task);
+    printf("yearBirth = %d\nmonthBirth = %d\nyearNow = %d\nmonthNow = %d", yearBirth, monthBirth, yearNow,
+           monthNow);
+
+    solution6(yearBirth, monthBirth, yearNow, monthNow);
+
+    jobDone();
+}
 
 //###############################################################
 //###############################################################
@@ -294,7 +342,7 @@ void task5(){
 int main() {
     while (1) {
         myCls(0);
-        puts("\n Select task.\n Task number 1 - Task number 50\n Input 0 for exit");
+        puts("\n ->Select task\n Task number 1 - Task number 50\n Input 0 for exit");
         int select = 0;
 
         int stop = 0;
@@ -335,6 +383,10 @@ int main() {
 
         if (select == 5) {
             task5();
+        }
+
+        if (select == 6) {
+            task6();
         }
         //*****************
 
