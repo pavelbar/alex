@@ -129,7 +129,7 @@ int correctly(char nameVariable, int len, int lim) {
     return answer;
 }
 
-void jobDone(){
+void jobDone() {
     puts("\nJob done.");
     sleep();
 }
@@ -318,7 +318,7 @@ void solution5(int number) {       //Task 5
     }
 }
 
-void task5(){
+void task5() {
     // Дано целое число. Определить оканчивается ли оно четной цифрой (составное условие не использовать).
     int task = 5;
 
@@ -346,7 +346,7 @@ void solution6(int yearBirth, int monthBirth, int yearNow, int monthNow) {      
     printf("\n Age = %d\n", age);
 }
 
-void task6(){
+void task6() {
     //  Известны год и месяц рождения человека, а также год и номер месяца сегодняшнего дня. Определить возраст человека,
     //  число полных лет. В случае совпадения указанных месяцев считать, что прошел полный год.
     int task = 6;
@@ -394,7 +394,7 @@ void solution7(int km, int foot) {       //Task7
     }
 }
 
-void task7(){
+void task7() {
     // Известны два расстояниея. Одно в КМ другое в футах. (1км = 0.45 фута). Какое расстояние меньше?
     int task = 7;
 
@@ -429,7 +429,7 @@ void solution8(int kmH, int mS) {        //Task 8
     }
 }
 
-void task8(){
+void task8() {
     // Известны две скорости. Одна в КМ/ч, другая в М/С. Какая скорость больше?
     int task = 8;
 
@@ -763,7 +763,8 @@ void solution17(int num) { //Task 17
 }
 
 void task17() {
-    //  Дано трехзначное число. Определить, равен ли квадрат этого числа сумме кубов его цифр.
+    //  Дано трехзначное число. Выяснить, является ли оно палиндромом («перевертышем»),
+    //  то есть числом, десятичная запись которого читается одинаково слева направо и справа налево
     int task = 17;
 
     myCls(task);
@@ -778,6 +779,44 @@ void task17() {
 
     jobDone();
 }
+
+//
+
+void solution18(int num) { //Task 18
+    int rightDigit = abs(num) % 10;
+    int leftDigit = abs(num) / 100;
+    int centerDigit = abs(num) / 10 % 10;
+    int sum = rightDigit + leftDigit + centerDigit;
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" Center Digit =%d\n", centerDigit);
+    printf(" Sum =%d\n", sum);
+
+    if (getLengthNumber(sum) == 3) {
+        puts(" All right. Sum is Two Digit");
+    } else {
+        puts(" Error. Sum is NOT Two Digit");
+    }
+}
+
+void task18() {
+    //Дано трехзначное число. Определить, является ли сумма его цифр двузначным числом
+    int task = 18;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 3)\n\n");
+    num = correctly('A', 3, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution18(num);
+
+    jobDone();
+}
+
 //###############################################################
 //########################### MAIN ##############################
 //###############################################################
@@ -874,6 +913,10 @@ int main() {
 
         if (select == 17) {
             task17();
+        }
+
+        if (select == 18) {
+            task18();
         }
 
         //*****************
