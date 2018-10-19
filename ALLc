@@ -248,7 +248,6 @@ void task4() {
     myCls(task);
     int A = 0;
     printf("Enter digit A (int)\n\n");
-    myCls(task);
     A = correctly('A', 0, 0);
 
     myCls(task);
@@ -259,6 +258,35 @@ void task4() {
     puts("\nJob done.");
     sleep();
 }
+
+//
+
+void solution5(int number) {       //Task 5
+    if (isEven(getLastDigit(number))) {
+        puts(" All right. Last from A is Even");
+    } else {
+        puts(" Error. Last from A is NOT Even");
+    }
+}
+
+void task5(){
+    // Дано целое число. Определить оканчивается ли оно четной цифрой (составное условие не использовать).
+    int task = 5;
+    myCls(task);
+    int A = 0;
+    printf("Enter digit A (int)\n\n");
+    A = correctly('A', 0, 0);
+
+    myCls(task);
+    printf("A = %d\n", A);
+
+    solution5(A);
+
+    puts("\nJob done.");
+    sleep();
+}
+
+
 //###############################################################
 //###############################################################
 //###############################################################
@@ -303,6 +331,10 @@ int main() {
 
         if (select == 4) {
             task4();
+        }
+
+        if (select == 5) {
+            task5();
         }
         //*****************
 
