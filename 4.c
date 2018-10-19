@@ -44,7 +44,7 @@ int getLastDigit(int number) {
 void solution(int number) {     //Task 4
     isOdd(number) ? puts(" All right. A is odd") : puts(" Error. A is NOT odd");
 
-    isOdd(number) == 7 ? puts(" All right. Lost is 7") : puts(" Error. Lost is not 7");
+    getLastDigit(number) == 7 ? puts(" All right. Lost is 7") : puts(" Error. Lost is not 7");
 }
 
 
