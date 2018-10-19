@@ -5,8 +5,17 @@
  * Дано целое число. Определить оканчивается ли оно четной цифрой (составное условие не использовать).
  */
 
-int correctly(char nameVariable) {
+void myCls() {
     system("cls");
+    puts("************************************************************\n"
+         "* Nizhniy Novgorod Technical University                    *\n"
+         "* Study work number 2. Task number 5.                      *\n"
+         "* Performed student 18 - IVT - 2. Kornilov Alexey          *\n"
+         "************************************************************\n");
+}
+
+int correctly(char nameVariable) {
+    myCls();
     printf("MODE: Input INT Variable %c\n\n%c = ", nameVariable, nameVariable);
     int flag = 0;
     int answer = 0;
@@ -22,7 +31,6 @@ int correctly(char nameVariable) {
     }
     printf("Press ENTER to normal mode");
     getchar();
-    system("cls");
     return answer;
 }
 
@@ -46,20 +54,20 @@ void solution(int number) {       //Task 5
 
 int main() {
     while (1) {
+        myCls();
         int A = 0;
         printf("Enter digit A (int)\n\n");
         printf("Press ENTER to input mode");
         getchar();
         A = correctly('A');
 
-        system("cls");
+        myCls();
         printf("A = %d\n", A);
 
         solution(A);
 
         printf("\nJob done. Press ENTER");
         getchar();
-        system("cls");
     }
     return 0;
 }
