@@ -146,7 +146,7 @@ int main() {
 
         solution2(A, B);
 
-        puts("Job done.");
+        puts("\nJob done.");
         sleep();
     }
     return 0;
