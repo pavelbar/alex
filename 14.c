@@ -42,10 +42,25 @@ int correctly(char nameVariable) {
     return answer;
 }
 
+int getLastDigit(int number) {
+    return abs(number % 10);
+}
 
-void isTwoDigitNumber(int num) { //Task 14
-    int rightDigit = abs(num) % 10;
-    int leftDigit = abs(num) / 10;
+
+int getFirstDigit(int number) {
+    number = abs(number);
+    int first = 0;
+    while (number > 0) {
+        first = number % 10;
+        number = number / 10;
+    }
+    return first;
+}
+
+
+void solution(int num) { //Task 14
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
     int sum = rightDigit + leftDigit;
 
 
@@ -72,7 +87,7 @@ int main() {
         system("cls");
         printf("digit = %d\n", num);
 
-        isTwoDigitNumber(num);
+        solution(num);
 
         printf("\nJob done. Press ENTER");
         getchar();
