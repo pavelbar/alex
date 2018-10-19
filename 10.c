@@ -30,13 +30,16 @@ int correctly(char nameVariable) {
     return answer;
 }
 
+
 double getRadiusCircleFromArea(int area) {
     return sqrt(area / PI_VAL);
 }
 
+
 double getLengthSquareFromArea(int area) {
     return sqrt(area);
 }
+
 
 double getDiametrCircleFromRadius(double radius) {
     return radius * 2;
