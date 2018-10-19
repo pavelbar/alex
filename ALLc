@@ -137,6 +137,10 @@ int getLastDigit(int number) {
     return number % 10;
 }
 
+int isOdd(int number) {
+    return !!!isEven(number);
+}
+
 //###############################################################
 //###############################################################
 //###############################################################
@@ -150,6 +154,8 @@ void solution1(int N, int M) {     //Task 1
 }
 
 void task1() {
+    // Если целое число М делится нацело на целое N, то вывести на экран частное от деления,
+    // в противном случае вывести сообщение «M на N не делится без остатка».
     int task = 1;
     myCls(task);
     int M = 0;
@@ -181,6 +187,7 @@ void solution2(int A, int B) {       //Task 2
 //
 
 void task2() {
+    // Является ли число А делителем Б
     int task = 2;
     myCls(task);
     int B = 0;
@@ -210,6 +217,7 @@ void solution3(int number) {     //Task 3
 }
 
 void task3() {
+    // Дано целое число. Определить является ли оно четным и оканчивается ли оно на 4.
     int task = 3;
     myCls(task);
     int A = 0;
@@ -225,6 +233,32 @@ void task3() {
     sleep();
 }
 
+//
+
+void solution4(int number) {     //Task 4
+    isOdd(number) ? puts(" All right. A is odd") : puts(" Error. A is NOT odd");
+
+    getLastDigit(number) == 7 ? puts(" All right. Lost is 7") : puts(" Error. Lost is not 7");
+}
+
+void task4() {
+    // Дано целое число. Определить является ли оно НЕчетным и оканчивается ли оно цифрой 7.
+
+    int task = 4;
+    myCls(task);
+    int A = 0;
+    printf("Enter digit A (int)\n\n");
+    myCls(task);
+    A = correctly('A', 0, 0);
+
+    myCls(task);
+    printf("A = %d\n", A);
+
+    solution4(A);
+
+    puts("\nJob done.");
+    sleep();
+}
 //###############################################################
 //###############################################################
 //###############################################################
@@ -265,6 +299,10 @@ int main() {
 
         if (select == 3) {
             task3();
+        }
+
+        if (select == 4) {
+            task4();
         }
         //*****************
 
