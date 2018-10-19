@@ -36,7 +36,6 @@ int correctly(char nameVariable) {
     }
     printf("Press ENTER to normal mode");
     getchar();
-    myCls();
     return answer;
 }
 
@@ -59,6 +58,7 @@ int main() {
         getchar();
         M = correctly('M');
 
+        myCls();
         int N = 0;
         printf("Enter divider N (int)\n\n");//делитель
         printf("Press ENTER to input mode");
