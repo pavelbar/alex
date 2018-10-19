@@ -149,7 +149,7 @@ int main() {
 
         solution1(N, M);
 
-        puts("Job done.");
+        puts("\nJob done.");
         sleep();
     }
     return 0;
