@@ -34,9 +34,10 @@ double msToKm(int speed) {
 }
 
 void solution(int kmH, int mS) {        //Task 8
-    printf("\n speed 2 (Km/H) = %f\n", msToKm(mS));
+    double valMsToKm = msToKm(mS);
+    printf("\n speed 2 (Km/H) = %f\n", valMsToKm);
 
-    if (labs(kmH) < labs(msToKm(mS))) {
+    if (labs(kmH) < valMsToKm) {
         puts(" speed 1 < speed 2");
     } else {
         puts(" speed 1 >= speed 2");
