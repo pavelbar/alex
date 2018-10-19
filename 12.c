@@ -43,9 +43,25 @@ int correctly(char nameVariable) {
 }
 
 
+int getLastDigit(int number) {
+    return abs(number % 10);
+}
+
+
+int getFirstDigit(int number) {
+    number = abs(number);
+    int first = 0;
+    while (number > 0) {
+        first = number % 10;
+        number = number / 10;
+    }
+    return first;
+}
+
+
 void equalFirstAndLastDigit(int num) { //Task 12
-    int rightDigit = abs(num) % 10;
-    int leftDigit = abs(num) / 10;
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
 
     printf(" Left Digit =%d\n", leftDigit);
     printf(" Right Digit =%d\n", rightDigit);
