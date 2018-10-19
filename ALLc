@@ -185,6 +185,12 @@ int getFirstDigit(int number) {
     return number / pow(10, getLengthNumber(number) - 1);
 }
 
+int getDigitInPos(int number, int pos) {//0,1,2....
+    number = abs(number);
+    int shift = number / pow(10, getLengthNumber(number) - 1 - pos);
+    return shift % 10;
+}
+
 //###############################################################
 //###################### SOLUTIONS ##############################
 //###############################################################
@@ -732,6 +738,47 @@ void task16() {
     jobDone();
 }
 
+//
+
+void solution17(int num) { //Task 17
+    int leftDigit = getFirstDigit(num);
+    int centerDigit = getDigitInPos(num, 1);
+    int rightDigit = getLastDigit(num);
+
+    int sum = rightDigit * rightDigit * rightDigit + leftDigit * leftDigit * leftDigit +
+              centerDigit * centerDigit * centerDigit;
+    int square = num * num;
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Center Digit =%d\n", centerDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" Sum of cubes =%d\n", sum);
+    printf(" Square =%d\n", square);
+
+    if (sum == square) {
+        puts(" All right. Sum and square is equal");
+    } else {
+        puts(" Error. Sum and square is not equal");
+    }
+}
+
+void task17() {
+    //  Дано трехзначное число. Выяснить, является ли оно палиндромом («перевертышем»),
+    //  то есть числом, десятичная запись которого читается одинаково слева направо и справа налево
+    int task = 17;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 3)\n\n");
+    num = correctly('A', 3, 0);
+
+    system("cls");
+    printf("digit = %d\n", num);
+
+    solution17(num);
+
+    jobDone();
+}
 //###############################################################
 //########################### MAIN ##############################
 //###############################################################
@@ -824,6 +871,10 @@ int main() {
 
         if (select == 16) {
             task16();
+        }
+
+        if (select == 17) {
+            task17();
         }
 
         //*****************
