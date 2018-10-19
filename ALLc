@@ -626,6 +626,42 @@ void task13() {
     jobDone();
 }
 
+//
+
+void solution14(int num) { //Task 14
+    int rightDigit = getLastDigit(num);
+    int leftDigit = getFirstDigit(num);
+    int sum = rightDigit + leftDigit;
+
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" Sum left and right digit =%d\n", sum);
+
+    if (getLengthNumber(sum) == 2) {
+        puts(" All right. Sum is two-digit number");
+    } else {
+        puts(" Error. Sum is NOT two-digit number");
+    }
+}
+
+void task14() {
+    //  Дано двузначное число. Определить, является ли сумма его цифр двузначным числом
+    int task = 14;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 2)\n\n");
+    num = correctly('A', 2, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution14(num);
+
+    jobDone();
+}
+
 //###############################################################
 //########################### MAIN ##############################
 //###############################################################
