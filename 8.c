@@ -29,12 +29,14 @@ int correctly(char nameVariable) {
 }
 
 
-void compareSpeed(int kmH, int mS) {        //Task 8
-    double speedTwoKm = mS / METERS_IN_KILOMMETER;
+double msToKm(int speed) {
+    return speed / METERS_IN_KILOMMETER;
+}
 
-    printf("\n speed 2 (Km/H) = %f\n", speedTwoKm);
+void solution(int kmH, int mS) {        //Task 8
+    printf("\n speed 2 (Km/H) = %f\n", msToKm(mS));
 
-    if (labs(kmH) < labs(speedTwoKm)) {
+    if (labs(kmH) < labs(msToKm(mS))) {
         puts(" speed 1 < speed 2");
     } else {
         puts(" speed 1 >= speed 2");
@@ -59,7 +61,7 @@ int main() {
         system("cls");
         printf("speed 1 (Km/H) = %f\nspeed 2 (M/s) = %f\n", speedOneKmH, speedTwoMs);
 
-        compareSpeed(speedOneKmH, speedTwoMs);
+        solution(speedOneKmH, speedTwoMs);
 
         printf("\nJob done. Press ENTER");
         getchar();
