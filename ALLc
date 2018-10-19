@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <windows.h>
+#include <math.h>
 
 /*
  * Если целое число М делится нацело на целое N, то вывести на экран частное от деления,
@@ -164,6 +165,20 @@ double getAreaCircle(int radius) {
 
 double getAreaSquare(int length) {
     return length * length;
+}
+
+double getRadiusCircleFromArea(int area) {
+    return sqrt(area / PI_VAL);
+}
+
+
+double getLengthSquareFromArea(int area) {
+    return sqrt(area);
+}
+
+
+double getDiametrCircleFromRadius(double radius) {
+    return radius * 2;
 }
 
 //###############################################################
@@ -458,6 +473,46 @@ void task9() {
     printf("radius for circle = %f\nlenght for square = %f\n", radius, lenght);
 
     solution9(radius, lenght);
+
+    jobDone();
+}
+
+//
+
+void solution10(int areaCircle, int areaSquare) {      //Task 10
+    double valRadiusCircle = getRadiusCircleFromArea(areaCircle);
+    double valDiametrCircle = getDiametrCircleFromRadius(valRadiusCircle);
+    double valLengthSquare = getLengthSquareFromArea(areaSquare);
+
+    printf("\n radius Circle = %f", valRadiusCircle);
+    printf("\n diametr Circle = %f", valDiametrCircle);
+    printf("\n length Square = %f", valLengthSquare);
+
+    if (valDiametrCircle <= valLengthSquare) {
+        puts("\n\n All right. Circle in Square");
+    } else {
+        puts("\n\n Error. Lite Square and big Circle");
+    }
+}
+
+void task10() {
+    // Известные площади круга и квадрата. Определить уместится ли круг в квадрате
+    int task = 10;
+
+    myCls(task);
+    double areaCircle = 0;
+    printf("Enter area for circle (int > 0)\n\n");
+    areaCircle = correctly('A', 0, 1);
+
+    myCls(task);
+    double areaSquare = 0;
+    printf("Enter area for square (int > 0)\n\n");
+    areaSquare = correctly('B', 0, 1);
+
+    myCls(task);
+    printf("Area for circle = %f\nArea for square = %f\n", areaCircle, areaSquare);
+
+    solution10(areaCircle, areaSquare);
 
     jobDone();
 }
