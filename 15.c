@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+#include <math.h>
 
 /*
  * Дано двузначное число. Определить, кратна ли трем сумма его цифр.
@@ -46,15 +47,8 @@ int getLastDigit(int number) {
     return abs(number % 10);
 }
 
-
 int getFirstDigit(int number) {
-    number = abs(number);
-    int first = 0;
-    while (number > 0) {
-        first = number % 10;
-        number = number / 10;
-    }
-    return first;
+    return number / pow(10, getLengthNumber(number) - 1);
 }
 
 
