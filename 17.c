@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+#include <math.h>
 
 /*
 /*Дано трехзначное число. Определить, равен ли квадрат этого числа сумме кубов его цифр.
@@ -42,18 +43,32 @@ int correctly(char nameVariable) {
     return answer;
 }
 
+int getLastDigit(int number) {
+    return abs(number % 10);
+}
+
+int getFirstDigit(int number) {
+    return number / pow(10, getLengthNumber(number) - 1);
+}
+
+int getDigitInPos(int number, int pos) {//0,1,2....
+    number = abs(number);
+    int shift = number / pow(10, getLengthNumber(number) - 1 - pos);
+    return shift % 10;
+}
 
 void solution(int num) { //Task 17
-    int rightDigit = abs(num) % 10;
-    int leftDigit = abs(num) / 100;
-    int centerDigit = abs(num) / 10 % 10;
+    int leftDigit = getFirstDigit(num);
+    int centerDigit = getDigitInPos(num, 1);
+    int rightDigit = getLastDigit(num);
+
     int sum = rightDigit * rightDigit * rightDigit + leftDigit * leftDigit * leftDigit +
               centerDigit * centerDigit * centerDigit;
     int square = num * num;
 
     printf(" Left Digit =%d\n", leftDigit);
-    printf(" Right Digit =%d\n", rightDigit);
     printf(" Center Digit =%d\n", centerDigit);
+    printf(" Right Digit =%d\n", rightDigit);
     printf(" Sum of cubes =%d\n", sum);
     printf(" Square =%d\n", square);
 
