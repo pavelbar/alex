@@ -1,3 +1,5 @@
+#define FOOTS_IN_KILOMMETER 0.45
+
 #include <stdio.h>
 #include <windows.h>
 
@@ -144,6 +146,10 @@ int getLastDigit(int number) {
 
 int isOdd(int number) {
     return !!!isEven(number);
+}
+
+double footsToKm(int distance) {
+    return distance * FOOTS_IN_KILOMMETER;
 }
 
 //###############################################################
@@ -335,6 +341,43 @@ void task6(){
     jobDone();
 }
 
+//
+
+void solution(int km, int foot) {       //Task7
+    double valFootsToKm = footsToKm(foot);
+
+    printf("\n distance 2 (KM) = %f\n", valFootsToKm);
+
+    if (km < valFootsToKm) {
+        puts(" distance 1 < distance 2");
+    } else {
+        puts(" distance 1 >= distance 2");
+    }
+}
+
+void task7(){
+    // Известны два расстояниея. Одно в КМ другое в футах. (1км = 0.45 фута). Какое расстояние меньше?
+    int task = 7;
+
+    myCls(task);
+    double distanceOneKm = 0;
+    printf("Enter distance 1 (Km) (int>0)\n\n");
+    distanceOneKm = correctly('A', 0, 1);
+
+    myCls(task);
+    double distanceTwoFoot = 0;
+    printf("Enter distance 2 (Foot) (int>0)\n\n");
+    distanceTwoFoot = correctly('B', 0, 1);
+
+    system("cls");
+    printf("distance 1 (KM) = %f\ndistance 2 (Foot) = %f\n", distanceOneKm, distanceTwoFoot);
+
+    solution(distanceOneKm, distanceTwoFoot);
+
+    jobDone();
+}
+
+
 //###############################################################
 //###############################################################
 //###############################################################
@@ -387,6 +430,10 @@ int main() {
 
         if (select == 6) {
             task6();
+        }
+
+        if (select == 7) {
+            task7();
         }
         //*****************
 
