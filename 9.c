@@ -38,9 +38,12 @@ double getAreaSquare(int length) {
 }
 
 void solution(int radius, int length) {      //Task 9
-    printf("\n Area Circle = %f\n Area Square = %f\n", getAreaCircle(radius), getAreaSquare(length));
+    double valAreaCircle = getAreaCircle(radius);
+    double valAreaSquare = getAreaSquare(length);
 
-    if (getAreaCircle(radius) < getAreaSquare(length)) {
+    printf("\n Area Circle = %f\n Area Square = %f\n", valAreaCircle, valAreaSquare);
+
+    if (valAreaCircle < valAreaSquare) {
         puts(" Area Circle < Area Square");
     } else {
         puts(" Area Circle >= Area Square");
