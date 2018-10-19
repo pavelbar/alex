@@ -30,17 +30,25 @@ int correctly(char nameVariable) {
     return answer;
 }
 
+double getRadiusCircleFromArea(int area){
+    return sqrt(area / PI_VAL);
+}
 
-void canCircleToSquare(int areaCircle, int areaSquare) {      //Task 10
-    double radiusCircle = sqrt(areaCircle / PI_VAL);
-    double diametrCircle = radiusCircle * 2;
-    double lenghtSquare = sqrt(areaSquare);
+double getLengthSquareFromArea(int area){
+    return sqrt(area);
+}
 
-    printf("\n radius Circle = %f", radiusCircle);
-    printf("\n diametr Circle = %f", diametrCircle);
-    printf("\n length Square = %f", lenghtSquare);
+double getDiametrCircleFromRadius(double radius){
+    return radius * 2;
+}
 
-    if (diametrCircle <= lenghtSquare) {
+;
+void solution(int areaCircle, int areaSquare) {      //Task 10
+    printf("\n radius Circle = %f", getRadiusCircleFromArea(areaCircle));
+    printf("\n diametr Circle = %f", getDiametrCircleFromRadius(getRadiusCircleFromArea(areaCircle)));
+    printf("\n length Square = %f", getLengthSquareFromArea(areaSquare));
+
+    if (getDiametrCircleFromRadius(getRadiusCircleFromArea(areaCircle)) <= getLengthSquareFromArea(areaSquare)) {
         puts("\n\n All right. Circle in Square");
     } else {
         puts("\n\n Error. Lite Square and big Circle");
@@ -55,7 +63,7 @@ int main() {
         printf("Press ENTER to input mode");
         getchar();
         areaCircle = correctly('A');
-        
+
         double areaSquare = 0;
         printf("Enter area for square (int > 0)\n\n");
         printf("Press ENTER to input mode");
@@ -65,7 +73,7 @@ int main() {
         system("cls");
         printf("Area for circle = %f\nArea for square = %f\n", areaCircle, areaSquare);
 
-        canCircleToSquare(areaCircle, areaSquare);
+        solution(areaCircle, areaSquare);
 
         printf("\nJob done. Press ENTER");
         getchar();
