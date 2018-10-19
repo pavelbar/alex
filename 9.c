@@ -29,14 +29,18 @@ int correctly(char nameVariable) {
     return answer;
 }
 
+double getAreaCircle(int radius) {
+    return PI_VAL * radius * radius;
+}
 
-void compareArea(int radius, int length) {      //Task 9
-    double sCircle = PI_VAL * radius * radius;
-    double sSquare = length * length;
+double getAreaSquare(int length) {
+    return length * length;
+}
 
-    printf("\n Area Circle = %f\n Area Square = %f\n", sCircle, sSquare);
+void solution(int radius, int length) {      //Task 9
+    printf("\n Area Circle = %f\n Area Square = %f\n", getAreaCircle(radius), getAreaSquare(length));
 
-    if (sCircle < sSquare) {
+    if (getAreaCircle(radius) < getAreaSquare(length)) {
         puts(" Area Circle < Area Square");
     } else {
         puts(" Area Circle >= Area Square");
@@ -61,7 +65,7 @@ int main() {
         system("cls");
         printf("radius for circle = %f\nlenght for square = %f\n", radius, lenght);
 
-        compareArea(radius, lenght);
+        solution(radius, lenght);
 
         printf("\nJob done. Press ENTER");
         getchar();
