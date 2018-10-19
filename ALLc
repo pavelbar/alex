@@ -1,5 +1,6 @@
 #define FOOTS_IN_KILOMMETER 0.45
 #define METERS_IN_KILOMMETER 1000
+#define PI_VAL 3.14
 
 #include <stdio.h>
 #include <windows.h>
@@ -155,6 +156,14 @@ double footsToKm(int distance) {
 
 double msToKm(int speed) {
     return speed / METERS_IN_KILOMMETER;
+}
+
+double getAreaCircle(int radius) {
+    return PI_VAL * radius * radius;
+}
+
+double getAreaSquare(int length) {
+    return length * length;
 }
 
 //###############################################################
@@ -348,7 +357,7 @@ void task6(){
 
 //
 
-void solution(int km, int foot) {       //Task7
+void solution7(int km, int foot) {       //Task7
     double valFootsToKm = footsToKm(foot);
 
     printf("\n distance 2 (KM) = %f\n", valFootsToKm);
@@ -377,7 +386,7 @@ void task7(){
     system("cls");
     printf("distance 1 (KM) = %f\ndistance 2 (Foot) = %f\n", distanceOneKm, distanceTwoFoot);
 
-    solution(distanceOneKm, distanceTwoFoot);
+    solution7(distanceOneKm, distanceTwoFoot);
 
     jobDone();
 }
@@ -412,7 +421,43 @@ void task8(){
     myCls(task);
     printf("speed 1 (Km/H) = %f\nspeed 2 (M/s) = %f\n", speedOneKmH, speedTwoMs);
 
-    solution(speedOneKmH, speedTwoMs);
+    solution8(speedOneKmH, speedTwoMs);
+
+    jobDone();
+}
+
+//
+void solution9(int radius, int length) {      //Task 9
+    double valAreaCircle = getAreaCircle(radius);
+    double valAreaSquare = getAreaSquare(length);
+
+    printf("\n Area Circle = %f\n Area Square = %f\n", valAreaCircle, valAreaSquare);
+
+    if (valAreaCircle < valAreaSquare) {
+        puts(" Area Circle < Area Square");
+    } else {
+        puts(" Area Circle >= Area Square");
+    }
+}
+
+void task9() {
+    // Даны радиус круга и сторона квадрата. У какой фигуры площадь больще?
+    int task = 9;
+
+    myCls(task);
+    double radius = 0;
+    printf("Enter radius for circle (int > 0)\n\n");
+    radius = correctly('A', 0, 1);
+
+    myCls(task);
+    double lenght = 0;
+    printf("Enter lenght for square (int > 0)\n\n");
+    lenght = correctly('B', 0, 1);
+
+    myCls(task);
+    printf("radius for circle = %f\nlenght for square = %f\n", radius, lenght);
+
+    solution9(radius, lenght);
 
     jobDone();
 }
