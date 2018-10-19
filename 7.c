@@ -29,12 +29,15 @@ int correctly(char nameVariable) {
 }
 
 
-void compareDistances(int km, int foot) {       //Task7
-    double distanceTwoKm = foot * 0.45;
+double footToKm(int distance) {
+    return distance * 0.45;
+}
 
-    printf("\n distance 2 (KM) = %f\n", distanceTwoKm);
 
-    if (km < distanceTwoKm) {
+void solution(int km, int foot) {       //Task7
+    printf("\n distance 2 (KM) = %f\n", footToKm(foot));
+
+    if (km < footToKm(foot)) {
         puts(" distance 1 < distance 2");
     } else {
         puts(" distance 1 >= distance 2");
@@ -59,7 +62,7 @@ int main() {
         system("cls");
         printf("distance 1 (KM) = %f\ndistance 2 (Foot) = %f\n", distanceOneKm, distanceTwoFoot);
 
-        compareDistances(distanceOneKm, distanceTwoFoot);
+        solution(distanceOneKm, distanceTwoFoot);
 
         printf("\nJob done. Press ENTER");
         getchar();
