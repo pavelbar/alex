@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <windows.h>
+#include <math.h>
 
 /*
  * Дано двухзначное число. Определить какая из его цифр больше 1 или 2
@@ -48,13 +49,7 @@ int getLastDigit(int number) {
 
 
 int getFirstDigit(int number) {
-    number = abs(number);
-    int first = 0;
-    while (number > 0) {
-        first = number % 10;
-        number = number / 10;
-    }
-    return first;
+    return number / pow(10, getLengthNumber(number) - 1);
 }
 
 
