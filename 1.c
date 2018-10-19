@@ -6,8 +6,16 @@
  * в противном случае вывести сообщение «M на N не делится без остатка».
  */
 
-int correctly(char nameVariable) {
+void myCls(){
     system("cls");
+    puts("************************************************************\n"
+         "*Nizhniy Novgorod Technical University*\n*Study work number 2. Task number 1."
+         "*\n *Performed student 18 - IVT - 2. Kornilov Alexey "
+         "*\n************************************************************\n");
+}
+
+int correctly(char nameVariable) {
+    myCls();
     printf("MODE: Input INT Variable %c\n\n%c = ", nameVariable, nameVariable);
     int flag = 0;
     int answer = 0;
@@ -28,7 +36,7 @@ int correctly(char nameVariable) {
     }
     printf("Press ENTER to normal mode");
     getchar();
-    system("cls");
+    myCls();
     return answer;
 }
 
@@ -44,6 +52,7 @@ void divisionWithoutRemainder(int N, int M) {     //Task 1
 
 int main() {
     while (1) {
+        myCls();
         int M = 0;
         printf("Enter dividend M (int)\n\n");//делимое
         printf("Press ENTER to input mode");
@@ -56,14 +65,13 @@ int main() {
         getchar();
         N = correctly('N');
 
-        system("cls");
+        myCls();
         printf("N = %d\nM = %d \n M / N = ", M, N);
 
         divisionWithoutRemainder(N, M);
 
         printf("\nJob done. Press ENTER");
         getchar();
-        system("cls");
     }
     return 0;
 }
