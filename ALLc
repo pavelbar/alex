@@ -1,4 +1,5 @@
 #define FOOTS_IN_KILOMMETER 0.45
+#define METERS_IN_KILOMMETER 1000
 
 #include <stdio.h>
 #include <windows.h>
@@ -150,6 +151,10 @@ int isOdd(int number) {
 
 double footsToKm(int distance) {
     return distance * FOOTS_IN_KILOMMETER;
+}
+
+double msToKm(int speed) {
+    return speed / METERS_IN_KILOMMETER;
 }
 
 //###############################################################
@@ -377,6 +382,41 @@ void task7(){
     jobDone();
 }
 
+//
+
+void solution8(int kmH, int mS) {        //Task 8
+    double valMsToKm = msToKm(mS);
+    printf("\n speed 2 (Km/H) = %f\n", valMsToKm);
+
+    if (labs(kmH) < valMsToKm) {
+        puts(" speed 1 < speed 2");
+    } else {
+        puts(" speed 1 >= speed 2");
+    }
+}
+
+void task8(){
+    // Известны две скорости. Одна в КМ/ч, другая в М/С. Какая скорость больше?
+    int task = 8;
+
+    myCls(task);
+    double speedOneKmH = 0;
+    printf("Enter speed 1 (Km/H) (int)\n\n");
+    speedOneKmH = correctly('A', 0, 0);
+
+    myCls(task);
+    double speedTwoMs = 0;
+    printf("Enter speed 2 (M/s) (int)\n\n");
+    speedTwoMs = correctly('B', 0, 0);
+
+    myCls(task);
+    printf("speed 1 (Km/H) = %f\nspeed 2 (M/s) = %f\n", speedOneKmH, speedTwoMs);
+
+    solution(speedOneKmH, speedTwoMs);
+
+    jobDone();
+}
+
 
 //###############################################################
 //###############################################################
@@ -434,6 +474,10 @@ int main() {
 
         if (select == 7) {
             task7();
+        }
+
+        if (select == 8) {
+            task8();
         }
         //*****************
 
