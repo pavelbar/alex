@@ -6,6 +6,11 @@
 #include <windows.h>
 #include <math.h>
 
+/*
+ * Если целое число М делится нацело на целое N, то вывести на экран частное от деления,
+ * в противном случае вывести сообщение «M на N не делится без остатка».
+ */
+
 void myCls(int task) {
     system("cls");
     printf("************************************************************\n"
@@ -138,6 +143,10 @@ int isEven(int number) {
 }
 
 
+int getLastDigit(int number) {
+    return number % 10;
+}
+
 int isOdd(int number) {
     return !!!isEven(number);
 }
@@ -170,10 +179,6 @@ double getLengthSquareFromArea(int area) {
 
 double getDiametrCircleFromRadius(double radius) {
     return radius * 2;
-}
-
-int getLastDigit(int number) {
-    return number % 10;
 }
 
 int getFirstDigit(int number) {
@@ -819,7 +824,111 @@ void task18() {
 int main() {
     while (1) {
         myCls(0);
-        puts("\n ->Select task\n Task number 1 - Task number 50\n Input 0 for exit");
+        puts("\n ->Select task\n Task number 1 - Task number 50\n Input 0 for exit \n");
+
+
+        puts(
+                "1. If an integer M is divisible by an integer N, then display the quotient, otherwise output the message M by N is not divisible without remainder.\n"
+
+                "2. Determine whether the number A is a divisor for B.\n"
+
+                "3. Given an integer. Determine whether it is even and ends with the number 4.\n"
+
+                "4. Given an integer. Determine whether it is odd and ends with the number 7.\n"
+
+                "5. Given an integer. Determine whether it ends in an even digit (do not use the compound condition).\n"
+
+                "6. The year and month of birth of a person are known, as well as the year and month of today. Determine the age of the person, the number of full years. In case of coincidence of the specified months, assume that a full year has passed.\n"
+
+                "7. Two distances are known: one in kilometers, the other in feet (1 foot = 0.45 m). What distance is less?\n"
+
+                "8. Two speeds are known: one in kilometers per hour, the other in meters per second. Which speed is higher?\n"
+
+                "9. Given the radius of the circle and the side of the square. Which figure has bigger area?\n"
+
+                "10. The areas of a circle and a square are known. Determine whether the circle will fit in a square.\n"
+
+                "11. Given a two-digit number. Determine which of its numbers is greater, first or second.\n"
+
+                "12. Given a two-digit number. Determine whether its numbers are the same.\n"
+
+                "13. Given a two-digit number. Determine whether the square of this number is equal to the quadruple sum of the cubes of its numbers.\n"
+
+                "14. Given a two-digit number. Determine whether the sum of its digits is a two-digit number.\n"
+
+                "15. Given a two-digit number. Determine whether the sum of its digits is a multiple of three.\n"
+
+                "16. Given a three-digit number. Find out whether it is a palindrome (flip), that is, a number whose decimal notation is read equally from left to right and from right to left.\n"
+
+                "17. Given a three-digit number. Determine whether the square of this number is equal to the sum of the cubes of its numbers.\n"
+
+                "18. Given a three-digit number. Determine whether the sum of its digits is a two-digit number.\n"
+
+                "19. Given a three-digit number. Determine whether the product of its numbers is a three-digit number.\n"
+
+                "20. Given a three-digit number. Determine whether five is a multiple of the sum of its digits.\n"
+
+                "21. Given a three-digit number. Is it true that all his numbers are the same?\n"
+
+                "22. Given a three-digit number. Determine whether among his numbers are the same.\n"
+
+                "23. Given a four-digit number. Determine whether the sum of the first two digits is equal to the sum of its last two digits.\n"
+
+                "24. Given a four-digit number. Determine whether the product of its numbers is a multiple of four.\n"
+
+                "25. Given a natural number. Is it true that it ends in an odd digit?\n"
+
+                "26. Given a natural number. Is it true that it ends with an even digit?\n"
+
+                "27. Given a real number. Is it true that its integer part ends with an even digit?\n"
+
+                "28. Given a real number. Is it true that its integer part is a multiple of three?\n"
+
+                "29. Three real numbers are given. Square those of them whose values ​​are non-negative, and to the fourth power - negative.\n"
+
+                "30. Two points are given: A (x1, y1) and B (x2, y2). Create an algorithm to determine which of the points is closer to the origin.\n"
+
+                "31. Real numbers x and y are not equal to each other. Replace the smaller of these two numbers with half of their sum, and the larger with their double product.\n"
+
+                "32. On the X0Y plane, point A is specified by its coordinates. Specify where it is located (on which axis or in which quadrant).\n"
+
+                "33. Given the integers n, m. If the numbers are not equal, then replace each of them with the value of their sum, and if they are equal, then replace the numbers with zeros.\n"
+
+                "34. Count the number of negative numbers among a, b, c.\n"
+
+                "35. Count the number of positive numbers among a, b, c.\n"
+
+                "36. Count the number of even numbers among a, b, c. The conditional operator does not use.\n"
+
+                "37. Count the number of odd numbers among a, b, c. The conditional operator does not use.\n"
+
+                "38. Three numbers are given, a, b, c. Are there exactly two even numbers among them?\n"
+
+                "39. Three numbers are given, a, b, c. Are there exactly two odd numbers among them?\n"
+
+                "40. Redistribute the values ​​of variables A and B so that A has a greater value, and B has a smaller one.\n"
+
+                "41. Determine the correctness of the date entered from the keyboard (the number - from 1 to 31, a month - from 1 to 12). When forming the answer, it is necessary to take into account the actual number of days in the month. For February, take into account the number of days in a leap year.\n"
+
+                "42. For the entered value of the date, count the number of days that have passed since the beginning of the epoch (January 1, 1970).\n"
+
+                "43. For the entered date value, determine the number of the quarter to which this date belongs and the number of days elapsed since the beginning of this quarter.\n"
+
+                "44. For the entered time value (HH - hour, MM - minutes, SS - seconds), determine the number of full minutes and the number of seconds that have passed first days. Also determine the number of full minutes past the beginning of a quarter of an hour, which corresponds to the specified point in time.\n"
+
+                "45. Write a program that analyzes data on age and refers a person to one of four age groups: preschooler, student, employee, retired person. The age value is entered from the keyboard.\n"
+
+                "46. ​​Create a program that determines whether the graph will function y = Ax2 + Bx + C through a given point with the coordinates (M, N).\n"
+
+                "47. The values ​​of the lengths of the sides of the brick A, B, C are given. Determine whether it is possible to move a brick of a specified size through a hole of rectangular cross section with the sides D and E.\n"
+
+                "48. Three positive numbers A, B and C are given. Determine whether they are consistently standing elements of an arithmetic or geometric progression.\n"
+
+                "49. From the keyboard, enter the lengths of segments A, B, C and D. Determine them on the possibility of constructing triangles.\n"
+
+                "50. Three points are given: A (x1, y1), B (x2, y2), C (x3, y3). Determine whether they are located on the same line. If not, calculate the angle B\n"
+        );
+
         int select = 0;
 
         int stop = 0;
