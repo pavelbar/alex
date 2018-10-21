@@ -13,11 +13,11 @@
 
 void myCls(int task) {
     system("cls");
-    printf("************************************************************\n"
-           "* Nizhniy Novgorod Technical University                    *\n");
+    printf("*************************************************************\n"
+           "* Nizhniy Novgorod Technical University                     *\n");
     printf("* Study work number 2. Task number %d.                      *\n", task);
-    printf("* Performed student 18 - IVT - 2. Kornilov Alexey          *\n"
-           "************************************************************\n");
+    printf("* Performed student 18 - IVT - 2. _______ ________          *\n"
+           "*************************************************************\n");
 }
 
 int getLengthNumber(int numb) {
