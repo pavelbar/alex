@@ -783,9 +783,9 @@ void task17() {
 //
 
 void solution18(int num) { //Task 18
-    int rightDigit = abs(num) % 10;
-    int leftDigit = abs(num) / 100;
-    int centerDigit = abs(num) / 10 % 10;
+    int leftDigit = getFirstDigit(num);
+    int centerDigit = getDigitInPos(num, 1);
+    int rightDigit = getLastDigit(num);
     int sum = rightDigit + leftDigit + centerDigit;
 
     printf(" Left Digit =%d\n", leftDigit);
@@ -815,6 +815,43 @@ void task18() {
     solution18(num);
 
     jobDone();
+}
+
+//
+
+void solution19(int num) { //Task 19
+    int leftDigit = getFirstDigit(num);
+    int centerDigit = getDigitInPos(num, 1);
+    int rightDigit = getLastDigit(num);
+    int mult = rightDigit * leftDigit * centerDigit;
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" Center Digit =%d\n", centerDigit);
+    printf(" Multiplication =%d\n", mult);
+
+    if (getLengthNumber(mult) == 2) {
+        puts(" All right. Multiplication is Two Digit");
+    } else {
+        puts(" Error. Multiplication is NOT Two Digit");
+    }
+}
+
+void task19() {
+    ///*Дано трехзначное число. Определить, является ли произведение его цифр трехзначным числом
+    int task = 19;
+
+    myCls(task);
+    int num = 0;
+    num = correctly('A', 3, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution19(num);
+
+    jobDone();
+
 }
 
 //###############################################################
@@ -1021,6 +1058,10 @@ int main() {
 
         if (select == 18) {
             task18();
+        }
+
+        if (select == 19) {
+            task19();
         }
 
         //*****************
