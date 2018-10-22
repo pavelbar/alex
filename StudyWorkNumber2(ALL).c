@@ -1,7 +1,7 @@
-#define _CRT_SECURE_NO_WARNINGS//del
 #define FOOTS_IN_KILOMMETER 0.45
 #define METERS_IN_KILOMMETER 1000
 #define PI_VAL 3.14
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <windows.h>
@@ -860,7 +860,7 @@ void solution19(int num) { //Task 19
 }
 
 void task19() {
-	///*Дано трехзначное число. Определить, является ли произведение его цифр трехзначным числом
+	//Дано трехзначное число. Определить, является ли произведение его цифр трехзначным числом
 	int task = 19;
 
 	myCls(task);
@@ -1077,7 +1077,7 @@ void solution25(int number) {       //Task25
 
 	printf("\n Last digit = %d\n", digit);
 
-	if (digit % 2 != 0) {
+	if (isOdd(digit)) {
 		puts(" All right. Last Number Is Odd");
 	}
 	else {
@@ -1098,6 +1098,38 @@ void task25() {
 	printf("Natural number = %d\n", number);
 
 	solution25(number);
+
+	jobDone();
+}
+
+//
+
+void solution26(int number) {       //Task26
+	int digit = number % 10;
+
+	printf("\n Last digit = %d\n", digit);
+
+	if (isEven(digit) == 0) {
+		puts(" All right. Last Number Is Even");
+	}
+	else {
+		puts(" Error. Last Number Is NOT Even");
+	}
+}
+
+void task26() {
+	//Дано натуральное число. Верно ли, что оно заканчивается четной цифрой?
+	int task = 26;
+
+	myCls(task);
+	int number = 0;
+	printf("Enter natural number (int>0)\n\n");
+	number = correctly('A', 0, 1);
+
+	system("cls");
+	printf("Natural number = %d\n", number);
+
+	solution26(number);
 
 	jobDone();
 }
@@ -1338,6 +1370,11 @@ int main() {
 
 		if (select == 25) {
 			task25();
+		}
+
+
+		if (select == 26) {
+			task26();
 		}
 
 		//*****************
