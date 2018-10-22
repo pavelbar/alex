@@ -13,11 +13,11 @@
 
 void myCls(int task) {
     system("cls");
-    printf("*************************************************************\n"
-           "* Nizhniy Novgorod Technical University                     *\n");
+    printf("************************************************************\n"
+           "* Nizhniy Novgorod Technical University                    *\n");
     printf("* Study work number 2. Task number %d.                      *\n", task);
-    printf("* Performed student 18 - IVT - 2. _______ ________          *\n"
-           "*************************************************************\n");
+    printf("* Performed student 18 - IVT - 2. Kornilov Alexey          *\n"
+           "************************************************************\n");
 }
 
 int getLengthNumber(int numb) {
@@ -851,7 +851,78 @@ void task19() {
     solution19(num);
 
     jobDone();
+}
 
+//
+
+void solution20(int num) { //Task 20
+    int leftDigit = getFirstDigit(num);
+    int centerDigit = getDigitInPos(num, 1);
+    int rightDigit = getLastDigit(num);
+    int sum = rightDigit + leftDigit + centerDigit;
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" Center Digit =%d\n", centerDigit);
+    printf(" Sum =%d\n", sum);
+
+    if (sum % 5 == 0) {
+        puts(" All right. Sum is Multiple Of Five");
+    } else {
+        puts(" Error. Sum is NOT Multiple Of Five");
+    }
+}
+
+void task20() {
+    //Дано трехзначное число. Определить, кратна ли пяти сумма его цифр.
+    int task = 20;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 3)\n\n");
+    num = correctly('A', 3, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution20(num);
+
+    jobDone();
+}
+
+//
+
+void solution21(int num) { //Task 21
+    int leftDigit = getFirstDigit(num);
+    int centerDigit = getDigitInPos(num, 1);
+    int rightDigit = getLastDigit(num);
+
+    printf(" Left Digit =%d\n", leftDigit);
+    printf(" Right Digit =%d\n", rightDigit);
+    printf(" Center Digit =%d\n", centerDigit);
+
+    if (leftDigit == rightDigit == centerDigit) {
+        puts(" All right. All is equal");
+    } else {
+        puts(" Error. All is NOT equal");
+    }
+}
+
+void task21() {
+    //Дано трехзначное число. Верно ли, что все его цифры одинаковые?
+    int task = 21;
+
+    myCls(task);
+    int num = 0;
+    printf("Enter digit (int, length = 3)\n\n");
+    num = correctly('A', 3, 0);
+
+    myCls(task);
+    printf("digit = %d\n", num);
+
+    solution21(num);
+
+    jobDone();
 }
 
 //###############################################################
@@ -971,6 +1042,7 @@ int main() {
         int stop = 0;
 
         while (1) {
+
             printf("\n Task number = ");
             stop = scanf("%d", &select);
             fflush(stdin);
@@ -1064,8 +1136,17 @@ int main() {
             task19();
         }
 
+        if (select == 20) {
+            task20();
+        }
+
+        if (select == 21) {
+            task21();
+        }
+
         //*****************
 
     }
+    
     return 0;
 }
