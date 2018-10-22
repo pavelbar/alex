@@ -39,7 +39,7 @@ float correctly(char nameVariable, char type, int lim) {
 			{
 				if (getFraction(number) == 0) {
 					if (isNatural(number) == 1) {
-					
+
 						printf("\n Variable %c correctly! \n\n", nameVariable);
 						break;
 					}
@@ -59,7 +59,7 @@ float correctly(char nameVariable, char type, int lim) {
 			}
 		}
 		else {
-					while (getc(stdin) != '\n');
+			while (getc(stdin) != '\n');
 			printf("Variable %c not correctly! Try again. \n%c = ", nameVariable, nameVariable);
 		}
 	}
@@ -121,7 +121,7 @@ int main()
 		int  n = 0;
 		cout << " Enter natural number n (integer)" << endl;
 		n = correctly('n', 'i', 1);// name: n; type: int, limit: natural
-		
+
 		myCls(task);
 		cout << " denominator a = " << a << endl;
 		cout << " degree n = " << n << endl;
@@ -129,10 +129,8 @@ int main()
 		float pCyclic = getP(a, n);
 		float pGeometric = getSumGeometricProgression(a, n);
 
-		cout << " -> Pc (cyclic) = " << pCyclic << endl;
-		cout << " -> Pg (sum geometric progression) = " << pGeometric << endl;
-
-		pCyclic == pGeometric ?  cout << "All right. Pc == Pg" : cout << "Program error. Pg != Pc";
+		cout << " -> P (cyclic) = " << pCyclic << endl;
+		cout << " -> Check: P (sum geometric progression) = " << pGeometric << endl;
 
 		jobDone();
 	}
