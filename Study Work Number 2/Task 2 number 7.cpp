@@ -1,5 +1,3 @@
-// mvsN7.2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
 #define LEFT_LIMIT 0.05
 #define RIGHT_LIMIT 1.55
 #define DELTA_X 0.05
