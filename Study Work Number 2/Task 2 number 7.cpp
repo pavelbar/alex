@@ -64,7 +64,7 @@ int main() {
 			<< "Calculate the arithmetic average value for the generated table of values of the function f (xi)." << endl
 			<< "y = 3^5-(3/x)-sqrt(x^3)+(10/x^5) = (10/x^5)-(3/x)-sqrt(x^3)+243" << endl << endl;
 
-		vector<double> vectorX, vectorY;    //Пустой вектор v_str
+		vector<double> vectorX, vectorY;    
 		for (double x = LEFT_LIMIT; x < RIGHT_LIMIT + DELTA_X; x += DELTA_X) {
 			vectorX.push_back(x);
 			vectorY.push_back(calcY(x));
