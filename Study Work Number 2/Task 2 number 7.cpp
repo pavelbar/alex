@@ -36,8 +36,8 @@ void jobDone() {
 }
 
 void printTable(const vector<double> &vectorX, const vector<double> &vectorY) {
-	printf("\t    x \t");
-	printf("\t   y(x) \t");
+	printf("\t x \t");
+	printf("\t\t y(x) \t");
 	printf("\n\n");
 	for (int i = 0; i < vectorX.size(); i++)
 	{
