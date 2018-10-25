@@ -60,7 +60,7 @@ int main() {
 			<< "Calculate the arithmetic average value for the generated table of values of the function f (xi)." << endl
 			<< "y = 3^5-(3/x)-sqrt(x^3)+(10/x^5) = (10/x^5)-(3/x)-sqrt(x^3)+243" << endl << endl;
 
-		int  len = (1.55 - 0.05) / 0.05;
+		int  len = (RIGHT_LIMIT - LEFT_LIMIT) / DELTA_X;
 
 		double maxY = calcY(LEFT_LIMIT);
 		double  xForMaxY = LEFT_LIMIT;
