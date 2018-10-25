@@ -56,6 +56,5 @@ int main() {
 		}
 		cout << endl << endl << "Sum = " << sum;
 		jobDone();
-		sleep();
 	}
 }
