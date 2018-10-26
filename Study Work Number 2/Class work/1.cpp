@@ -56,8 +56,6 @@ int main() {
 		int number = 1;
 		int sum = 0;
 
-		number = correctly('a');
-		sum += number;
 		while (number != 0)
 		{
 			number = correctly('a');
