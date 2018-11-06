@@ -47,7 +47,7 @@ double calcY(double x) {
 	if (x < 0) {
 		return atan(x);
 	}
-	if ((x <= 0) && (x < 1)) {
+	if ((x >= 0) && (x < 1)) {
 		return cos(x);
 	}
 	if (x >= 1) {
@@ -64,7 +64,7 @@ double calc_dY(double x) {
 	if (x < 0) {
 		return -1 / (1 + pow(x, 2));
 	}
-	if ((x <= 0) && (x < 1)) {
+	if ((x >= 0) && (x < 1)) {
 		return -sin(x);
 	}
 	if (x >= 1) {
