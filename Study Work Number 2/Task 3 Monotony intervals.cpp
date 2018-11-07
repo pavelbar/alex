@@ -1,7 +1,6 @@
 #include <fstream> // LOG
 #include <iostream>
 #include "math.h"
-#include <vector>
 
 using namespace std;
 
