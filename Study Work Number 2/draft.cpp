@@ -1,4 +1,5 @@
 
+#include <fstream> // LOG
 #include <iostream>
 #include "math.h"
 
@@ -36,10 +37,10 @@ void printHeadTable() {
 	printf("\n\n");
 }
 
-void printTable(double x, double y, int dy) {
+void printTable(double x, double y, double dy) {
 	printf("\t%5f\t", x);
 	printf("\t%5f\t", y);
-	printf("\t%5d\t", dy);
+	printf("\t%5f\t", dy);
 	printf("\n\n");
 }
 
@@ -77,23 +78,29 @@ double calc_dY(double x) {
 	}
 }
 
-int checkDerivative(double dy) {
-	if (dy > 0) {
-		return 1;
+void createLogFile(double b, double a, double h) {
+	std::ofstream outY, out_dY, outX;
+	outY.open("D:\\logY.txt");
+	out_dY.open("D:\\log_dY.txt");
+	outX.open("D:\\logX.txt");
+	for (double x = a; x < b; x += h) {
+		double tmpY = calcY(x);
+		double tmp_dY = calc_dY(x);
+		if (outY.is_open()) {
+			outY << tmpY << std::endl;
+			out_dY << tmp_dY << std::endl;
+			outX << x << std::endl;
+		}
 	}
-	else if (dy == 0) {
-		return 0;
-	}
-	else {
-		return -1;
-	}
+	outY.close();
+	out_dY.close();
+
 }
 
 int main() {
 	while (true)
 	{
 		int task = 7;
-		double RIGHT_LIMIT = 0, LEFT_LIMIT = 0, DELTA_X = 0;
 
 		myCls(task);
 		cout
@@ -103,28 +110,34 @@ int main() {
 			<< "f(x) = cos(x)		  		 if (0 <=  x  < 1)" << endl
 			<< "f(x) = min{arctg(x), cos(x)} if (x >= 1)" << endl << endl;
 
-		cout << " a = ";
-		cin >> LEFT_LIMIT;
+		//double b = 0, a = 0, h = 0;
 
-		cout << " b = ";
-		cin >> RIGHT_LIMIT;
+		//cout << " a = ";
+		//cin >> a;
 
-		cout << " h = ";
-		cin >> DELTA_X;
+		//cout << " b = ";
+		//cin >> b;
 
-		//cout << " LEFT_LIMIT = " << LEFT_LIMIT;
-		//cout << " RIGHT_LIMIT = " << RIGHT_LIMIT;
-		//cout << " DELTA_X = " << DELTA_X;
+		//cout << " h = ";
+		//cin >> h;
+
+		double b = 10, a = -10, h = 0.1;
+
+		cout << endl << " a = " << a;
+		cout << endl << " b = " << b;
+		cout << endl << " h = " << h;
 
 		printHeadTable();
 
 		bool isMonotone = true;
-		int firstDerivative = checkDerivative(calc_dY(LEFT_LIMIT));
+		double tmp_dY = calc_dY(a);
+		int firstDerivative = tmp_dY / abs(tmp_dY);
 
-		for (double x = LEFT_LIMIT; x < RIGHT_LIMIT + DELTA_X; x += DELTA_X) {
+		for (double x = a; x < b; x += h) {
 			double tmpY = calcY(x);
-			printTable(x, tmpY, checkDerivative(calc_dY(x)));
-			if (firstDerivative != checkDerivative(calc_dY(x))) {
+			double tmp_dY = calc_dY(x);
+			printTable(x, tmpY, tmp_dY);
+			if (firstDerivative != tmp_dY / abs(tmp_dY)) {
 				isMonotone = false;
 			}
 		}
@@ -136,6 +149,7 @@ int main() {
 			cout << endl << " function is NOT monotone " << endl;
 		}
 
+		createLogFile(b, a, h);
 		jobDone();
 	}
 }
