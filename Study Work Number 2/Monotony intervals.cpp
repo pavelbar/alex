@@ -1,7 +1,7 @@
-
 #include <fstream> // LOG
 #include <iostream>
 #include "math.h"
+#include <vector>
 
 using namespace std;
 
@@ -94,7 +94,6 @@ void createLogFile(double b, double a, double h) {
 	}
 	outY.close();
 	out_dY.close();
-
 }
 
 int main() {
@@ -110,18 +109,16 @@ int main() {
 			<< "f(x) = cos(x)		  		 if (0 <=  x  < 1)" << endl
 			<< "f(x) = min{arctg(x), cos(x)} if (x >= 1)" << endl << endl;
 
-		//double b = 0, a = 0, h = 0;
+		double b = 0, a = 0, h = 0;
 
-		//cout << " a = ";
-		//cin >> a;
+		cout << " a = ";
+		cin >> a;
 
-		//cout << " b = ";
-		//cin >> b;
+		cout << " b = ";
+		cin >> b;
 
-		//cout << " h = ";
-		//cin >> h;
-
-		double b = 10, a = -10, h = 0.1;
+		cout << " h = ";
+		cin >> h;
 
 		cout << endl << " a = " << a;
 		cout << endl << " b = " << b;
@@ -132,6 +129,8 @@ int main() {
 		bool isMonotone = true;
 		double tmp_dY = calc_dY(a);
 		int firstDerivative = tmp_dY / abs(tmp_dY);
+		std::vector<double> monotonyIntervals;
+		monotonyIntervals.push_back(a);
 
 		for (double x = a; x < b; x += h) {
 			double tmpY = calcY(x);
@@ -139,6 +138,8 @@ int main() {
 			printTable(x, tmpY, tmp_dY);
 			if (firstDerivative != tmp_dY / abs(tmp_dY)) {
 				isMonotone = false;
+				firstDerivative = tmp_dY / abs(tmp_dY);
+				monotonyIntervals.push_back(x);
 			}
 		}
 
@@ -148,6 +149,26 @@ int main() {
 		else {
 			cout << endl << " function is NOT monotone " << endl;
 		}
+
+		cout << endl << " Monotony intervals" << endl;
+
+		int shift = 0;
+		for (vector<double>::iterator it = monotonyIntervals.begin(); it != monotonyIntervals.end(); ++it) {
+			shift++;
+			if (shift == 1) {
+				cout << " (";
+			}
+			if (shift == 2) {
+				cout << ";";
+			}
+			cout << *it;
+			if (shift == 2) {
+				cout << ")";
+				shift = 0;
+				cout << endl;
+			}
+		}
+
 
 		createLogFile(b, a, h);
 		jobDone();
