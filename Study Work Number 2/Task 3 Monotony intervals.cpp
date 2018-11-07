@@ -129,8 +129,6 @@ int main() {
 		bool isMonotone = true;
 		double tmp_dY = calc_dY(a);
 		int firstDerivative = tmp_dY / abs(tmp_dY);
-		std::vector<double> monotonyIntervals;
-		monotonyIntervals.push_back(a);
 
 		for (double x = a; x < b; x += h) {
 			double tmpY = calcY(x);
@@ -139,7 +137,6 @@ int main() {
 			if (firstDerivative != tmp_dY / abs(tmp_dY)) {
 				isMonotone = false;
 				firstDerivative = tmp_dY / abs(tmp_dY);
-				monotonyIntervals.push_back(x);
 			}
 		}
 
@@ -149,26 +146,6 @@ int main() {
 		else {
 			cout << endl << " function is NOT monotone " << endl;
 		}
-
-		cout << endl << " Monotony intervals" << endl;
-
-		int shift = 0;
-		for (vector<double>::iterator it = monotonyIntervals.begin(); it != monotonyIntervals.end(); ++it) {
-			shift++;
-			if (shift == 1) {
-				cout << " (";
-			}
-			if (shift == 2) {
-				cout << ";";
-			}
-			cout << *it;
-			if (shift == 2) {
-				cout << ")";
-				shift = 0;
-				cout << endl;
-			}
-		}
-
 
 		createLogFile(b, a, h);
 		jobDone();
