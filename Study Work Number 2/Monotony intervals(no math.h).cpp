@@ -1,4 +1,5 @@
 #define VAL_EPS 0.0000001
+#define VAL_PI 3.141592653589
 
 #include <fstream> // LOG
 #include <iostream>
@@ -85,8 +86,16 @@ double my_cos(double x)
 	return sum; // получившаяся сумма
 }
 
-double my_arctg(double x)
-{
+double my_arctg(double x) {
+
+	if (x < 1) {
+		return -VAL_PI / 2;
+	}
+
+	if (x > 1) {
+		return VAL_PI / 2;
+	}
+
 	double sum = 0; // Тут копим сумму
 	double an = x;// Тут храним N-ый член ряда (начальное значение an)
 
