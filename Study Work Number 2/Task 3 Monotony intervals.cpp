@@ -47,33 +47,17 @@ double calcY(double x) {
 	if (x < 0) {
 		return atan(x);
 	}
-	if ((x >= 0) && (x < 1)) {
+	else{
 		return cos(x);
-	}
-	if (x >= 1) {
-		if (cos(x) < atan(x)) {
-			return cos(x);
-		}
-		else {
-			return atan(x);
-		}
 	}
 }
 
 double calc_dY(double x) {
 	if (x < 0) {
-		return -1 / (1 + pow(x, 2));
+		return 1 / (1 + pow(x, 2));
 	}
-	if ((x >= 0) && (x < 1)) {
+	else {
 		return -sin(x);
-	}
-	if (x >= 1) {
-		if (cos(x) < atan(x)) {
-			return -sin(x);
-		}
-		else {
-			return -1 / (1 + pow(x, 2));
-		}
 	}
 }
 
