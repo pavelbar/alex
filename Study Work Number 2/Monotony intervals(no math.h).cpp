@@ -3,7 +3,6 @@
 
 #include <fstream> // LOG
 #include <iostream>
-//#include "math.h"
 
 using namespace std;
 
@@ -72,23 +71,22 @@ double my_fabs(double a)
 
 double my_cos(double x)
 {
-	double sum = 0; // Òóò êîïèì ñóììó
-	double an = 1;// Òóò õðàíèì N-ûé ÷ëåí ðÿäà (íà÷àëüíîå çíà÷åíèå an)
-	int n = 0; // íà÷àëüíîå çíà÷åíèå n
+	double sum = 0;
+	double an = 1;
+	int n = 0;
 
 	while (my_fabs(an) > VAL_EPS)
-		// Ñóììèðîâàòü áóäåì ïîêà ÷ëåí ðÿäà an íå ñòàíåò äîñòàòî÷íî ìàëåíüêèì ïî ìîäóëþ
 	{
-		sum += an; // ñóììèðóåì î÷åðåäíîé ÷ëåí ðÿäà
+		sum += an;
 		n++;
-		an *= (-x * x) / (2 * n*(2 * n - 1)); // ïåðåñ÷èòûâàåì a(n) ÷åðåç a(n-1)
+		an *= (-x * x) / (2 * n*(2 * n - 1));
 	}
-	return sum; // ïîëó÷èâøàÿñÿ ñóììà
+	return sum;
 }
 
 double my_arctg(double x) {
 
-	if (x < 1) {
+	if (x < -1) {
 		return -VAL_PI / 2;
 	}
 
@@ -96,16 +94,16 @@ double my_arctg(double x) {
 		return VAL_PI / 2;
 	}
 
-	double sum = 0; // Òóò êîïèì ñóììó
-	double an = x;// Òóò õðàíèì N-ûé ÷ëåí ðÿäà (íà÷àëüíîå çíà÷åíèå an)
+	double sum = 0;
+	double an = x;
 
-	for (int n = 0; VAL_EPS < my_fabs(an); n = n + 1) //n -  íà÷àëüíîå çíà÷åíèå n
-		// Ñóììèðîâàòü áóäåì ïîêà ÷ëåí ðÿäà an íå ñòàíåò äîñòàòî÷íî ìàëåíüêèì ïî ìîäóëþ
+	for (int n = 0; VAL_EPS < my_fabs(an); n = n + 1)
+
 	{
-		sum += an; // ñóììèðóåì î÷åðåäíîé ÷ëåí ðÿäà
-		an *= (-1)*x*x*(2 * n + 1) / (2 * n + 3.0); // ïåðåñ÷èòûâàåì a(n) ÷åðåç a(n-1)
+		sum += an;
+		an *= (-1)*x*x*(2 * n + 1) / (2 * n + 3.0);
 	}
-	return sum; // ïîëó÷èâøàÿñÿ ñóììà
+	return sum;
 }
 
 double my_sin(double x)
@@ -129,7 +127,7 @@ double calcY(double x) {
 	if (x < 0) {
 		return my_arctg(x);
 	}
-	else{
+	else {
 		return my_cos(x);
 	}
 }
