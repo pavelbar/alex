@@ -3,7 +3,7 @@
 
 #include <fstream> // LOG
 #include <iostream>
-#include "math.h"
+//#include "math.h"
 
 using namespace std;
 
@@ -72,18 +72,18 @@ double my_fabs(double a)
 
 double my_cos(double x)
 {
-	double sum = 0; // Тут копим сумму
-	double an = 1;// Тут храним N-ый член ряда (начальное значение an)
-	int n = 0; // начальное значение n
+	double sum = 0; // Òóò êîïèì ñóììó
+	double an = 1;// Òóò õðàíèì N-ûé ÷ëåí ðÿäà (íà÷àëüíîå çíà÷åíèå an)
+	int n = 0; // íà÷àëüíîå çíà÷åíèå n
 
-	while (fabs(an) > VAL_EPS)
-		// Суммировать будем пока член ряда an не станет достаточно маленьким по модулю
+	while (my_fabs(an) > VAL_EPS)
+		// Ñóììèðîâàòü áóäåì ïîêà ÷ëåí ðÿäà an íå ñòàíåò äîñòàòî÷íî ìàëåíüêèì ïî ìîäóëþ
 	{
-		sum += an; // суммируем очередной член ряда
+		sum += an; // ñóììèðóåì î÷åðåäíîé ÷ëåí ðÿäà
 		n++;
-		an *= (-x * x) / (2 * n*(2 * n - 1)); // пересчитываем a(n) через a(n-1)
+		an *= (-x * x) / (2 * n*(2 * n - 1)); // ïåðåñ÷èòûâàåì a(n) ÷åðåç a(n-1)
 	}
-	return sum; // получившаяся сумма
+	return sum; // ïîëó÷èâøàÿñÿ ñóììà
 }
 
 double my_arctg(double x) {
@@ -96,27 +96,17 @@ double my_arctg(double x) {
 		return VAL_PI / 2;
 	}
 
-	double sum = 0; // Тут копим сумму
-	double an = x;// Тут храним N-ый член ряда (начальное значение an)
+	double sum = 0; // Òóò êîïèì ñóììó
+	double an = x;// Òóò õðàíèì N-ûé ÷ëåí ðÿäà (íà÷àëüíîå çíà÷åíèå an)
 
-	for (int n = 0; VAL_EPS < fabs(an); n = n + 1) //n -  начальное значение n
-		// Суммировать будем пока член ряда an не станет достаточно маленьким по модулю
+	for (int n = 0; VAL_EPS < my_fabs(an); n = n + 1) //n -  íà÷àëüíîå çíà÷åíèå n
+		// Ñóììèðîâàòü áóäåì ïîêà ÷ëåí ðÿäà an íå ñòàíåò äîñòàòî÷íî ìàëåíüêèì ïî ìîäóëþ
 	{
-		sum += an; // суммируем очередной член ряда
-		an *= (-1)*x*x*(2 * n + 1) / (2 * n + 3.0); // пересчитываем a(n) через a(n-1)
+		sum += an; // ñóììèðóåì î÷åðåäíîé ÷ëåí ðÿäà
+		an *= (-1)*x*x*(2 * n + 1) / (2 * n + 3.0); // ïåðåñ÷èòûâàåì a(n) ÷åðåç a(n-1)
 	}
-	return sum; // получившаяся сумма
+	return sum; // ïîëó÷èâøàÿñÿ ñóììà
 }
-
-
-
-
-
-
-
-
-
-
 
 double my_sin(double x)
 {
@@ -125,7 +115,7 @@ double my_sin(double x)
 	n = 1;
 	an = x;
 	s = 0;
-	while (fabs(an) > VAL_EPS)
+	while (my_fabs(an) > VAL_EPS)
 	{
 		s += an;
 		n++;
@@ -137,19 +127,19 @@ double my_sin(double x)
 
 double calcY(double x) {
 	if (x < 0) {
-		return x - (my_pow(x, 3) / 3) + (my_pow(x, 5) / 5);
+		return my_arctg(x);
 	}
-	else {
-		return 1 - (my_pow(x, 2) / 2) + (my_pow(x, 4) / 24) - (my_pow(x, 6) / 720);
+	else{
+		return my_cos(x);
 	}
 }
 
 double calc_dY(double x) {
 	if (x < 0) {
-		return 1 - my_pow(x, 2) + my_pow(x, 4);
+		return 1 / (1 + my_pow(x, 2));
 	}
 	else {
-		return -x + (my_pow(x, 3) / 6) - (my_pow(x, 5) / 120);
+		return -my_sin(x);
 	}
 }
 
@@ -208,8 +198,8 @@ int main() {
 		for (double x = a; x < b; x += h) {
 			double tmpY = calcY(x);
 			double tmp_dY = calc_dY(x);
-			//			printTable(x, tmpY, cos(x));
-			printTable(x, atan(x), my_arctg(x));
+			printTable(x, tmpY, tmp_dY);
+
 			if (firstDerivative != tmp_dY / my_fabs(tmp_dY)) {
 				isMonotone = false;
 				firstDerivative = tmp_dY / my_fabs(tmp_dY);
