@@ -36,7 +36,7 @@ size_t getTextSize() {
 	size_t textSize = 0; //Число символов в файле
 	char symbolBuf; //буффер для подсчета символов
 
- 	ifstream ifs(readPath);
+	ifstream ifs(readPath);
 	if (!ifs) {
 		cout << "don't open file" << endl;
 		exit(1);
@@ -114,7 +114,7 @@ int main() {
 
 		size_t textSize = getTextSize();
 
-		char *lineText = new char[textSize]; 
+		char *lineText = new char[textSize];
 		lineText = read(textSize);
 
 		size_t  lenWordMax = getLenWordMax(lineText, textSize);
@@ -125,7 +125,7 @@ int main() {
 
 
 
-		
+
 		size_t tmpLen = 0;
 		size_t tmpI = 0;
 		bool end = false;
@@ -143,14 +143,14 @@ int main() {
 				type newCell;
 				newCell.cell = new char[lenWordMax];
 				memset(newCell.cell, 0, lenWordMax * (sizeof newCell.cell[0]));
-				
+
 
 				size_t left = tmpI;
 				size_t right = left + tmpLen + 1;
 
-				cout <<"LEFT "<< left << endl;
+				cout << "LEFT " << left << endl;
 				cout << "len " << tmpLen << endl;
-				cout <<"right "<< right  << endl;
+				cout << "right " << right << endl;
 
 				size_t tmpPos = 0;
 				for (size_t i = left; i < right; i++) {
@@ -160,7 +160,7 @@ int main() {
 				}
 
 				cout << "newCell " << newCell.cell << endl << endl;
-				vectorText[0]= newCell ;
+				vectorText.push_back(newCell);//warning vectorText[ 1 ]= newCell
 				end = false;
 				tmpI = i + 1;
 				tmpLen = 0;
@@ -175,12 +175,12 @@ int main() {
 		vectorText.push_back(newCell);
 		delete[] newCell.cell; //освобождаем память
 
-		cout << endl << "vector"<<endl <<endl;
+		cout << endl << "vector" << endl << endl;
 
+		for (size_t i = 0; i < vectorText.size(); i++) {
+			cout << vectorText[i].cell;
+		}
 
-			cout << vectorText[0].cell;
-
-		
 		jobDone();
 		delete[] lineText; //освобождаем память
 		vectorText.clear();
