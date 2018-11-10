@@ -1,0 +1,189 @@
+#include <iostream>
+#include <fstream> 
+#include <vector>
+
+using namespace std;
+
+const char readPath[] = "D:\\input.txt";
+const char writePath[] = "input.txt";
+
+void printLogo(int task) {
+	printf("************************************************************\n"
+		"* Nizhniy Novgorod Technical University                    *\n");
+	printf("* Study work number 2. Task number %d.                      *\n", task);
+	printf("* Performed student 18 - IVT - 2. Kornilov Alexey          *\n"
+		"************************************************************\n");
+}
+
+void sleep() {
+	system("pause");
+	cout << endl;
+}
+
+void myCls(int task) {
+	system("cls");
+	printLogo(task);
+}
+
+void jobDone() {
+	cout << endl;
+	puts("\nJob done.");
+	cout << endl;
+	sleep();
+}
+
+size_t getTextSize() {
+	size_t textSize = 0; //Число символов в файле
+	char symbolBuf; //буффер для подсчета символов
+
+ 	ifstream ifs(readPath);
+	if (!ifs) {
+		cout << "don't open file" << endl;
+		exit(1);
+	}
+	else
+	{
+		while (!ifs.eof())
+		{
+			ifs.get(symbolBuf);
+			textSize++;
+		}
+
+	}
+	ifs.close();
+
+	return textSize;
+}
+
+char* read(size_t textSize) {
+	char *textBuf = new char[textSize]; //Выделяем память по определенному числу символов
+	for (int i = 0; i < textSize; i++) {
+		textBuf[i] = NULL; //Очищаем строку от хлама
+	}
+	ifstream f2(readPath);  //создаем поток для работы с файлом
+	int pos = 0; //куроср на текущий символ (как номер буквы в слове)
+
+	while (!f2.eof()) //Проходим ао файлу
+	{
+		f2.get(textBuf[pos]); //Записываем симыол за символом 
+		pos++; //передвинули курсор для записи следующего символа
+	}
+
+	f2.close(); //закончили работу с файлом
+
+	return textBuf;
+}
+
+size_t getLenWordMax(char *lineText, size_t textSize) {
+	size_t max = 0;
+	size_t tmpMax = 0;
+
+	for (size_t i = 0; i < textSize; i++) {
+		if ((lineText[i] == ' ') || (lineText[i] == '\n')) {
+			if (max < tmpMax) {
+				max = tmpMax;
+			}
+			tmpMax = 0;
+		}
+		else {
+			tmpMax++;
+		}
+	}
+	return max;
+
+}
+
+
+int main() {
+	setlocale(LC_ALL, ".866");
+
+	struct type {
+		char *cell;
+	};
+	std::vector<type> vectorText;
+
+	while (true)
+	{
+		int task = 0;
+
+		myCls(task);
+		cout
+			<< "Tasks.The source of the data and the result of the program is textual." << endl
+			<< "file.For coding tex, the DOS code table (CP866) is used." << endl
+			<< "Create a program that processes the file according to the specified the algorithm" << endl << endl;
+
+		size_t textSize = getTextSize();
+
+		char *lineText = new char[textSize]; 
+		lineText = read(textSize);
+
+		size_t  lenWordMax = getLenWordMax(lineText, textSize);
+
+		cout << lineText << endl;//dbg
+		cout << textSize << endl;//dbg
+		cout << lenWordMax << endl;//dbg
+
+
+
+		
+		size_t tmpLen = 0;
+		size_t tmpI = 0;
+		bool end = false;
+
+		for (size_t i = 0; i < 10; i++) {//textSize
+
+			if ((lineText[i] == ' ') || (lineText[i] == '\n')) {
+				end = true;
+			}
+			else {
+				tmpLen++;
+			}
+
+			if (end) {
+				type newCell;
+				newCell.cell = new char[lenWordMax];
+				memset(newCell.cell, 0, lenWordMax * (sizeof newCell.cell[0]));
+				
+
+				size_t left = tmpI;
+				size_t right = left + tmpLen + 1;
+
+				cout <<"LEFT "<< left << endl;
+				cout << "len " << tmpLen << endl;
+				cout <<"right "<< right  << endl;
+
+				size_t tmpPos = 0;
+				for (size_t i = left; i < right; i++) {
+
+					newCell.cell[tmpPos] = lineText[i];
+					tmpPos++;
+				}
+
+				cout << "newCell " << newCell.cell << endl << endl;
+				vectorText[0]= newCell ;
+				end = false;
+				tmpI = i + 1;
+				tmpLen = 0;
+				delete[] newCell.cell; //освобождаем память
+
+			}
+		}
+
+		type newCell;
+		newCell.cell = new char[lenWordMax];
+		newCell.cell[0] = '\0';
+		vectorText.push_back(newCell);
+		delete[] newCell.cell; //освобождаем память
+
+		cout << endl << "vector"<<endl <<endl;
+
+
+			cout << vectorText[0].cell;
+
+		
+		jobDone();
+		delete[] lineText; //освобождаем память
+		vectorText.clear();
+
+	}
+}
