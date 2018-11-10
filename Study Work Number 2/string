@@ -32,7 +32,7 @@ void jobDone() {
 	sleep();
 }
 
-size_t getTextSize() {
+size_t getLineTextSize() {
 	size_t textSize = 0; //Число символов в файле
 	char symbolBuf; //буффер для подсчета символов
 
@@ -74,33 +74,31 @@ char* read(size_t textSize) {
 	return textBuf;
 }
 
-size_t getLenWordMax(char *lineText, size_t textSize) {
-	size_t max = 0;
-	size_t tmpMax = 0;
+bool isSystemSymbolOrSpace(char symbol) {
+	if ( (symbol == ' ') || (symbol == '\0') || (symbol == '\a') || (symbol == '\b') || (symbol == '\t') || (symbol == '\n') || (symbol == '\v') || (symbol == '\f') || (symbol == '\r')) {
+		//puts("\nyes");
+		return true;
+	}
+	else {
+		//puts("\nmo");
+		return false;
+	}
+}
 
-	for (size_t i = 0; i < textSize; i++) {
-		if ((lineText[i] == ' ') || (lineText[i] == '\n')) {
-			if (max < tmpMax) {
-				max = tmpMax;
-			}
-			tmpMax = 0;
-		}
-		else {
-			tmpMax++;
+size_t getCountSystemsSymbols(char * txt, size_t textLineSize) {
+	size_t count = 0;
+	for (size_t i = 0; i < textLineSize; i++) {
+		if (isSystemSymbolOrSpace(txt[i])){
+			count++;
 		}
 	}
-	return max;
-
+	return count;
 }
 
 
 int main() {
-	setlocale(LC_ALL, ".866");
-
-	struct type {
-		char *cell;
-	};
-	std::vector<type> vectorText;
+	setlocale(LC_ALL, "Russian");
+	//setlocale(LC_ALL, ".866");
 
 	while (true)
 	{
@@ -112,27 +110,30 @@ int main() {
 			<< "file.For coding tex, the DOS code table (CP866) is used." << endl
 			<< "Create a program that processes the file according to the specified the algorithm" << endl << endl;
 
-		size_t textSize = getTextSize();
+		size_t lineTextSize = getLineTextSize();
 
-		char *lineText = new char[textSize];
-		lineText = read(textSize);
+		char *lineText = new char[lineTextSize];
+		lineText = read(lineTextSize);
 
-		size_t  lenWordMax = getLenWordMax(lineText, textSize);
-
-		cout << lineText << endl;//dbg
-		cout << textSize << endl;//dbg
-		cout << lenWordMax << endl;//dbg
-
-
+		{
+			cout << lineText << endl;//dbg dell
+			cout << lineTextSize << endl;//dbg dell
+			cout << getCountSystemsSymbols(lineText, lineTextSize) << endl;//dbg dell
+		}
 
 
+		// line text to mas
+		size_t masTextSize = 0;
 		size_t tmpLen = 0;
 		size_t tmpI = 0;
 		bool end = false;
+		size_t countSystemsSymbols = getCountSystemsSymbols(lineText, lineTextSize);
+		char** masText = new char* [countSystemsSymbols];
 
-		for (size_t i = 0; i < 10; i++) {//textSize
+		for (size_t i = 0; i < lineTextSize; i++) {
+			char symbol = lineText[i];
 
-			if ((lineText[i] == ' ') || (lineText[i] == '\n')) {
+			if (isSystemSymbolOrSpace(lineText[i])) {
 				end = true;
 			}
 			else {
@@ -140,50 +141,41 @@ int main() {
 			}
 
 			if (end) {
-				type newCell;
-				newCell.cell = new char[lenWordMax];
-				memset(newCell.cell, 0, lenWordMax * (sizeof newCell.cell[0]));
-
-
 				size_t left = tmpI;
 				size_t right = left + tmpLen + 1;
+
 
 				cout << "LEFT " << left << endl;
 				cout << "len " << tmpLen << endl;
 				cout << "right " << right << endl;
 
+				masText[masTextSize] = new char[tmpLen] + 1;
 				size_t tmpPos = 0;
-				for (size_t i = left; i < right; i++) {
-
-					newCell.cell[tmpPos] = lineText[i];
-					tmpPos++;
+					for (size_t i = left; i < right; i++) {
+						masText[masTextSize][tmpPos]= lineText[i];
+						tmpPos++;
 				}
-
-				cout << "newCell " << newCell.cell << endl << endl;
-				vectorText.push_back(newCell);//warning vectorText[ 1 ]= newCell
+					tmpPos = 0;
+					masText[masTextSize][tmpLen + 1] = '\0';
+				cout << "newCell " << masText[masTextSize] << endl << endl;
+				masTextSize++;
 				end = false;
 				tmpI = i + 1;
 				tmpLen = 0;
-				delete[] newCell.cell; //освобождаем память
-
 			}
 		}
 
-		type newCell;
-		newCell.cell = new char[lenWordMax];
-		newCell.cell[0] = '\0';
-		vectorText.push_back(newCell);
-		delete[] newCell.cell; //освобождаем память
 
-		cout << endl << "vector" << endl << endl;
 
-		for (size_t i = 0; i < vectorText.size(); i++) {
-			cout << vectorText[i].cell;
+		cout << endl << "mas" << endl << endl;
+
+		for (size_t i = 0; i < masTextSize; i++) {
+			cout << "i "<< i <<"      " << masText[i] << endl;
 		}
 
 		jobDone();
-		delete[] lineText; //освобождаем память
-		vectorText.clear();
+//освобождаем память
+
 
 	}
 }
