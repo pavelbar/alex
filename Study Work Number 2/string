@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream> 
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -32,112 +33,60 @@ void jobDone() {
 	sleep();
 }
 
-size_t getLineTextSize() {
-	size_t textSize = 0;
-	char symbolBuf;
-
-	ifstream ifs(readPath);
-	if (!ifs) {
-		cout << "don't open file" << endl;
-		exit(1);
-	}
-	else
+vector<char> read() {
+	vector<char> vLineText;
+	char symbol;
+	ifstream f(readPath);
+	while (!f.eof())
 	{
-		while (!ifs.eof())
-		{
-			ifs.get(symbolBuf);
-			textSize++;
-		}
-
+		f.get(symbol);
+		vLineText.push_back(symbol);
 	}
-	ifs.close();
-
-	return textSize;
+	f.close();
+	return vLineText;
 }
 
-char* read(size_t textSize) {
-	char *textBuf = new char[textSize];
-	for (int i = 0; i < textSize; i++) {
-		textBuf[i] = NULL;
-	}
-	ifstream f2(readPath);
-	int pos = 0;
-
-	while (!f2.eof())
-	{
-		f2.get(textBuf[pos]);
-		pos++;
-	}
-
-	f2.close();
-
-	return textBuf;
-}
-
-
-bool isSystemSymbolOrSpace(char symbol) {
-	if ((symbol == ' ') || (symbol == '\0') || (symbol == '\a') || (symbol == '\b') || (symbol == '\t') || (symbol == '\n') || (symbol == '\v') || (symbol == '\f') || (symbol == '\r')) {
-		return true;
-	}
-	else {
-		return false;
+void print(vector<char> vLineText) {
+	for (char symbol : vLineText) {
+		cout << symbol;
 	}
 }
 
-size_t getCountSystemsSymbols(char * txt, size_t textLineSize) {
-	size_t count = 0;
-	for (size_t i = 0; i < textLineSize; i++) {
-		if (isSystemSymbolOrSpace(txt[i])) {
-			count++;
-		}
-	}
-	return count;
-}
-
-char** lineTextToMas(char* lineText, size_t lineTextSize, size_t masTextSize) {
-	size_t tmpLen = 0;
-	size_t tmpI = 0;
-	bool end = false;
-
-	char** masText = new char*[masTextSize];
-	size_t tmpTExtSize = 0;
-
-	for (size_t i = 0; i < lineTextSize; i++) {
-		char symbol = lineText[i];
-
-		if (isSystemSymbolOrSpace(lineText[i])) {
-			end = true;
-		}
-		else {
-			tmpLen++;
-		}
-
-		if (end) {
-			size_t left = tmpI;
-			size_t right = left + tmpLen + 1;
-			masText[tmpTExtSize] = new char[tmpLen] + 1;
-			size_t tmpPos = 0;
-			for (size_t i = left; i < right; i++) {
-				masText[tmpTExtSize][tmpPos] = lineText[i];
-				tmpPos++;
-			}
-			tmpPos = 0;
-			masText[tmpTExtSize][tmpLen + 1] = '\0';
-			tmpTExtSize++;
-			end = false;
-			tmpI = i + 1;
-			tmpLen = 0;
-		}
-	}
-	return masText;
-}
-
-void write(char** masText, size_t masTextSize) {
+void write(vector<char> vLineText) {
 	ofstream  fout(writePath);
-	for (size_t i = 0; i < masTextSize; i++) {
-		fout << masText[i];
+	for (char symbol : vLineText) {
+		fout << symbol;
 	}
 	fout.close();
+}
+
+vector<char> input() {
+	char symbol;
+	vector<char> vResult;
+
+	do
+	{
+		cin.get(symbol);
+
+		vResult.push_back(symbol);
+	} while (symbol != '\n');
+	return vResult;
+}
+
+int find(vector<char> vec, vector<char> find) {
+	size_t findSize = find.size() - 1;
+	size_t k = 1;
+	
+	for (size_t i = 0; i < findSize; i++) {
+		for (size_t j = 0; j < vec.size(); j++) {
+			if (find[i] == vec[j]) {
+
+			}
+		}
+	}
+	
+
+	
 }
 
 int main() {
@@ -153,27 +102,34 @@ int main() {
 			<< "file.For coding tex, the DOS code table (CP866) is used." << endl
 			<< "Create a program that processes the file according to the specified the algorithm" << endl << endl;
 
-		size_t lineTextSize = getLineTextSize();
+		vector<char> vLineText = read();
 
-		char *lineText = new char[lineTextSize];
-		lineText = read(lineTextSize);
+		cout << endl << "============================" << endl;
+		print(vLineText);
+		cout << endl << "============================";
 
-		// line text to mas
+		cout << endl << endl << " Insert a word in the text between the two given." << endl;
 
-		size_t masTextSize = getCountSystemsSymbols(lineText, lineTextSize);
-		char** masText = new char*[masTextSize];
-		masText = lineTextToMas(lineText, lineTextSize, masTextSize);
+		cout << " After word: ";
+		vector<char> vLeft = input();
 
-		for (size_t i = 0; i < masTextSize; i++) {
-			cout << masText[i];
-		}
+		cout << " Before the word: ";
+		vector<char> vRight = input();
 
-		write(masText, masTextSize);
+		cout << endl << " After: ";
+		print(vLeft);
+		cout << " After index: ";
+		cout << find(vLineText, vLeft);
+		//
+		cout << endl << endl << " Before : ";
+		print(vRight);
+		cout << " Before index: ";
+		cout << find(vLineText, vRight);
+		//
 
+
+		write(vLineText);
+		vLineText.clear();
 		jobDone();
-
-		//освобождаем память
-		delete[] lineText;
-		delete[] masText;
 	}
 }
