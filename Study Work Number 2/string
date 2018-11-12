@@ -5,7 +5,7 @@
 using namespace std;
 
 const char readPath[] = "D:\\input.txt";
-const char writePath[] = "input.txt";
+const char writePath[] = "D:\\out.txt";
 
 void printLogo(int task) {
 	printf("************************************************************\n"
@@ -33,8 +33,8 @@ void jobDone() {
 }
 
 size_t getLineTextSize() {
-	size_t textSize = 0; //Число символов в файле
-	char symbolBuf; //буффер для подсчета символов
+	size_t textSize = 0;
+	char symbolBuf;
 
 	ifstream ifs(readPath);
 	if (!ifs) {
@@ -56,31 +56,30 @@ size_t getLineTextSize() {
 }
 
 char* read(size_t textSize) {
-	char *textBuf = new char[textSize]; //Выделяем память по определенному числу символов
+	char *textBuf = new char[textSize];
 	for (int i = 0; i < textSize; i++) {
-		textBuf[i] = NULL; //Очищаем строку от хлама
+		textBuf[i] = NULL;
 	}
-	ifstream f2(readPath);  //создаем поток для работы с файлом
-	int pos = 0; //куроср на текущий символ (как номер буквы в слове)
+	ifstream f2(readPath);
+	int pos = 0;
 
-	while (!f2.eof()) //Проходим ао файлу
+	while (!f2.eof())
 	{
-		f2.get(textBuf[pos]); //Записываем симыол за символом 
-		pos++; //передвинули курсор для записи следующего символа
+		f2.get(textBuf[pos]);
+		pos++;
 	}
 
-	f2.close(); //закончили работу с файлом
+	f2.close();
 
 	return textBuf;
 }
 
+
 bool isSystemSymbolOrSpace(char symbol) {
-	if ( (symbol == ' ') || (symbol == '\0') || (symbol == '\a') || (symbol == '\b') || (symbol == '\t') || (symbol == '\n') || (symbol == '\v') || (symbol == '\f') || (symbol == '\r')) {
-		//puts("\nyes");
+	if ((symbol == ' ') || (symbol == '\0') || (symbol == '\a') || (symbol == '\b') || (symbol == '\t') || (symbol == '\n') || (symbol == '\v') || (symbol == '\f') || (symbol == '\r')) {
 		return true;
 	}
 	else {
-		//puts("\nmo");
 		return false;
 	}
 }
@@ -88,17 +87,61 @@ bool isSystemSymbolOrSpace(char symbol) {
 size_t getCountSystemsSymbols(char * txt, size_t textLineSize) {
 	size_t count = 0;
 	for (size_t i = 0; i < textLineSize; i++) {
-		if (isSystemSymbolOrSpace(txt[i])){
+		if (isSystemSymbolOrSpace(txt[i])) {
 			count++;
 		}
 	}
 	return count;
 }
 
+char** lineTextToMas(char* lineText, size_t lineTextSize, size_t masTextSize) {
+	size_t tmpLen = 0;
+	size_t tmpI = 0;
+	bool end = false;
+
+	char** masText = new char*[masTextSize];
+	size_t tmpTExtSize = 0;
+
+	for (size_t i = 0; i < lineTextSize; i++) {
+		char symbol = lineText[i];
+
+		if (isSystemSymbolOrSpace(lineText[i])) {
+			end = true;
+		}
+		else {
+			tmpLen++;
+		}
+
+		if (end) {
+			size_t left = tmpI;
+			size_t right = left + tmpLen + 1;
+			masText[tmpTExtSize] = new char[tmpLen] + 1;
+			size_t tmpPos = 0;
+			for (size_t i = left; i < right; i++) {
+				masText[tmpTExtSize][tmpPos] = lineText[i];
+				tmpPos++;
+			}
+			tmpPos = 0;
+			masText[tmpTExtSize][tmpLen + 1] = '\0';
+			tmpTExtSize++;
+			end = false;
+			tmpI = i + 1;
+			tmpLen = 0;
+		}
+	}
+	return masText;
+}
+
+void write(char** masText, size_t masTextSize) {
+	ofstream  fout(writePath);
+	for (size_t i = 0; i < masTextSize; i++) {
+		fout << masText[i];
+	}
+	fout.close();
+}
 
 int main() {
-	setlocale(LC_ALL, "Russian");
-	//setlocale(LC_ALL, ".866");
+	setlocale(LC_ALL, ".866");
 
 	while (true)
 	{
@@ -115,67 +158,22 @@ int main() {
 		char *lineText = new char[lineTextSize];
 		lineText = read(lineTextSize);
 
-		{
-			cout << lineText << endl;//dbg dell
-			cout << lineTextSize << endl;//dbg dell
-			cout << getCountSystemsSymbols(lineText, lineTextSize) << endl;//dbg dell
-		}
-
-
 		// line text to mas
-		size_t masTextSize = 0;
-		size_t tmpLen = 0;
-		size_t tmpI = 0;
-		bool end = false;
-		size_t countSystemsSymbols = getCountSystemsSymbols(lineText, lineTextSize);
-		char** masText = new char* [countSystemsSymbols];
 
-		for (size_t i = 0; i < lineTextSize; i++) {
-			char symbol = lineText[i];
-
-			if (isSystemSymbolOrSpace(lineText[i])) {
-				end = true;
-			}
-			else {
-				tmpLen++;
-			}
-
-			if (end) {
-				size_t left = tmpI;
-				size_t right = left + tmpLen + 1;
-
-
-				cout << "LEFT " << left << endl;
-				cout << "len " << tmpLen << endl;
-				cout << "right " << right << endl;
-
-				masText[masTextSize] = new char[tmpLen] + 1;
-				size_t tmpPos = 0;
-					for (size_t i = left; i < right; i++) {
-						masText[masTextSize][tmpPos]= lineText[i];
-						tmpPos++;
-				}
-					tmpPos = 0;
-					masText[masTextSize][tmpLen + 1] = '\0';
-				cout << "newCell " << masText[masTextSize] << endl << endl;
-				masTextSize++;
-				end = false;
-				tmpI = i + 1;
-				tmpLen = 0;
-			}
-		}
-
-
-
-		cout << endl << "mas" << endl << endl;
+		size_t masTextSize = getCountSystemsSymbols(lineText, lineTextSize);
+		char** masText = new char*[masTextSize];
+		masText = lineTextToMas(lineText, lineTextSize, masTextSize);
 
 		for (size_t i = 0; i < masTextSize; i++) {
-			cout << "i "<< i <<"      " << masText[i] << endl;
+			cout << masText[i];
 		}
 
+		write(masText, masTextSize);
+
 		jobDone();
-//освобождаем память
 
-
+		//освобождаем память
+		delete[] lineText;
+		delete[] masText;
 	}
 }
