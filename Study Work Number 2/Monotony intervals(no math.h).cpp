@@ -193,7 +193,7 @@ int main() {
 		double tmp_dY = calc_dY(a);
 		int firstDerivative = tmp_dY / my_fabs(tmp_dY);
 
-		for (double x = a; x < b; x += h) {
+		for (double x = a; x <=  b; x += h) {
 			double tmpY = calcY(x);
 			double tmp_dY = calc_dY(x);
 			printTable(x, tmpY, tmp_dY);
