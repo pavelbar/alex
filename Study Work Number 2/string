@@ -26,10 +26,15 @@ void myCls(int task) {
 	printLogo(task);
 }
 
+void clearStdIn() {
+	while (getc(stdin) != '\n');// clear stdin
+}
+
 void jobDone() {
 	cout << endl;
 	puts("\nJob done.");
 	cout << endl;
+	clearStdIn();
 	sleep();
 }
 
@@ -91,11 +96,9 @@ int find(vector<char> vec, vector<char> find) {
 				}
 				k++;
 			}
-
 			if (done) break;
 		}
 	}
-
 
 	if (done) {
 		return ind;
@@ -103,7 +106,12 @@ int find(vector<char> vec, vector<char> find) {
 	else {
 		return -1;
 	}
+}
 
+void add(vector<char>& oldV, vector<char> addPart, size_t pos) {
+	for (size_t i = 0; i < addPart.size() - 1; i++) {
+		oldV.insert(oldV.begin() + pos + i, addPart[i]);
+	}
 }
 
 int main() {
@@ -127,6 +135,7 @@ int main() {
 
 		cout << endl << endl << " MODE: Add word" << endl;
 		cout << endl << " Insert a word about which" << endl << "-> ";
+
 		vector<char>  vFind = input();
 		if (find(vLineText, vFind) == -1) {
 			cout << endl << "error. not found";
@@ -141,20 +150,35 @@ int main() {
 				cout << endl << "error. not found";
 			}
 			else {
+				size_t findIndex = find(vLineText, vFind);
 				size_t index = 0;
 				if (select == 1) {
-					index = find(vLineText, vFind) + vFind.size() - 1;
+					index = findIndex + vFind.size() - 1;
 				}
 				if (select == 2) {
-					index = find(vLineText, vFind) - 1;
+					if (findIndex == 0) {
+						index = 0;
+					}
+					else {
+						index = findIndex - 1;
+					}
 				}
 				cout << endl << "Pos for add: " << index;
+				clearStdIn();// clear stdin
+				cout << endl << " Insert a word for add" << endl << "-> ";
+				vector<char>  vNew = input();
+				add(vLineText, vNew, index);
 			}
 
 		}
 
+		cout << endl << "============================" << endl;
+		print(vLineText);
+		cout << endl << "============================";
+
 		write(vLineText);
 		vLineText.clear();
+
 		jobDone();
 	}
 }
