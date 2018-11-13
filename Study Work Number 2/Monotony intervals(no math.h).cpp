@@ -200,7 +200,7 @@ int main() {
 
 			if (firstDerivative != tmp_dY / my_fabs(tmp_dY)) {
 				isMonotone = false;
-				firstDerivative = tmp_dY / my_fabs(tmp_dY);
+				//firstDerivative = tmp_dY / my_fabs(tmp_dY);
 			}
 		}
 
