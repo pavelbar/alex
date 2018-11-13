@@ -60,7 +60,7 @@ void print(vector<char> vLineText) {
 void write(vector<char> vLineText) {
 	ofstream  fout(writePath);
 	for (char symbol : vLineText) {
-		fout << symbol;
+		fout << '1';
 	}
 	fout.close();
 }
@@ -110,7 +110,7 @@ int find(vector<char> vec, vector<char> find) {
 
 void add(vector<char>& oldV, vector<char> addPart, size_t pos) {
 	for (size_t i = 0; i < addPart.size() - 1; i++) {
-		oldV.insert(oldV.begin() + i, addPart[i]);
+		oldV.insert(oldV.begin() + pos + i, addPart[i]);
 	}
 }
 
