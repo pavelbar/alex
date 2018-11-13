@@ -75,18 +75,35 @@ vector<char> input() {
 
 int find(vector<char> vec, vector<char> find) {
 	size_t findSize = find.size() - 1;
-	size_t k = 1;
-	
-	for (size_t i = 0; i < findSize; i++) {
-		for (size_t j = 0; j < vec.size(); j++) {
-			if (find[i] == vec[j]) {
+	size_t ind = -1;
+	bool done = false;
 
+	for (size_t i = 0; i < vec.size() - findSize + 1; i++) {
+		done = false;
+		if (vec[i] == find[0]) {
+			ind = i;
+			done = true;
+			size_t k = 0;
+			for (size_t j = ind; j < ind + findSize; j++) {
+				if (vec[j] != find[k]) {
+					done = false;
+					break;
+				}
+				k++;
 			}
+
+			if (done) break;
 		}
 	}
-	
 
-	
+
+	if (done) {
+		return ind;
+	}
+	else {
+		return -1;
+	}
+
 }
 
 int main() {
