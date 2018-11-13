@@ -96,7 +96,6 @@ int find(vector<char> vec, vector<char> find) {
 				}
 				k++;
 			}
-
 			if (done) break;
 		}
 	}
@@ -107,14 +106,11 @@ int find(vector<char> vec, vector<char> find) {
 	else {
 		return -1;
 	}
-
 }
 
-void add(vector<char> oldV, vector<char> addPart, size_t pos) {
-	vector <char>::iterator it;
-	it = oldV.begin(); 
+void add(vector<char>& oldV, vector<char> addPart, size_t pos) {
 	for (size_t i = 0; i < addPart.size() - 1; i++) {
-		oldV.insert(it, addPart[i]);
+		oldV.insert(oldV.begin() + i, addPart[i]);
 	}
 }
 
@@ -162,7 +158,8 @@ int main() {
 				if (select == 2) {
 					if (findIndex == 0) {
 						index = 0;
-					}else {
+					}
+					else {
 						index = findIndex - 1;
 					}
 				}
@@ -170,7 +167,7 @@ int main() {
 				clearStdIn();// clear stdin
 				cout << endl << " Insert a word for add" << endl << "-> ";
 				vector<char>  vNew = input();
-				add(vLineText, vNew, index); 
+				add(vLineText, vNew, index);
 			}
 
 		}
