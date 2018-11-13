@@ -125,25 +125,33 @@ int main() {
 		print(vLineText);
 		cout << endl << "============================";
 
-		cout << endl << endl << " Insert a word in the text between the two given." << endl;
+		cout << endl << endl << " MODE: Add word" << endl;
+		cout << endl << " Insert a word about which" << endl << "-> ";
+		vector<char>  vFind = input();
+		if (find(vLineText, vFind) == -1) {
+			cout << endl << "error. not found";
+		}
+		else {
+			int select = 0;
+			cout << endl << " 1. (posle) After ";
+			cout << endl << " 2. (do) Before ";
+			cout << endl << "Select mode. Mode = " << endl << "-> ";
+			cin >> select;
+			if ((select < 1) || (select > 2)) {
+				cout << endl << "error. not found";
+			}
+			else {
+				size_t index = 0;
+				if (select == 1) {
+					index = find(vLineText, vFind) + vFind.size() - 1;
+				}
+				if (select == 2) {
+					index = find(vLineText, vFind) - 1;
+				}
+				cout << endl << "Pos for add: " << index;
+			}
 
-		cout << " After word: ";
-		vector<char> vLeft = input();
-
-		cout << " Before the word: ";
-		vector<char> vRight = input();
-
-		cout << endl << " After: ";
-		print(vLeft);
-		cout << " After index: ";
-		cout << find(vLineText, vLeft);
-		//
-		cout << endl << endl << " Before : ";
-		print(vRight);
-		cout << " Before index: ";
-		cout << find(vLineText, vRight);
-		//
-
+		}
 
 		write(vLineText);
 		vLineText.clear();
