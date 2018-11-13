@@ -60,7 +60,7 @@ void print(vector<char> vLineText) {
 void write(vector<char> vLineText) {
 	ofstream  fout(writePath);
 	for (char symbol : vLineText) {
-		fout << '1';
+		fout << symbol;
 	}
 	fout.close();
 }
