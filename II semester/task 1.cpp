@@ -24,7 +24,7 @@ void findCommandLineArguments(int argc, char** argv, int &fileName) {
 				if (argv[i][1] == 'h') {
 					getHelp();
 				}
-				if (argv[i][1] == 'p') {
+				if (argv[i][1] == 'n') {
 					setFileName(argc, argv, fileName, i);
 				}
 			}
