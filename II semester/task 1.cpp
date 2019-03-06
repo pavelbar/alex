@@ -37,6 +37,7 @@ void logFile(char** argv, int fileName) {
 	myStream.open(argv[fileName]);
 	if (myStream.is_open()) {
 		while (1) {
+			cout << endl << "ENTER FROM KEYBOARD:";
 			char symbol = getchar();            // Get one character from the input
 			if (symbol == EOF) {
 				break;
@@ -52,7 +53,7 @@ int main(int argc, char** argv) {
 	findCommandLineArguments(argc, argv, fileName);
 
 	if (fileName == 0) {
-		cout << endl << "FATALERROR! not fount file Name.";
+		cout << endl << "FATALERROR! not found file Name.";
 	}
 	else {
 		logFile(argv, fileName);
