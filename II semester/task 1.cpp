@@ -36,8 +36,8 @@ void logFile(char** argv, int fileName) {
 	std::ofstream myStream;
 	myStream.open(argv[fileName]);
 	if (myStream.is_open()) {
+		cout << endl << "ENTER FROM KEYBOARD:" << endl;
 		while (1) {
-			cout << endl << "ENTER FROM KEYBOARD:";
 			char symbol = getchar();            // Get one character from the input
 			if (symbol == EOF) {
 				break;
