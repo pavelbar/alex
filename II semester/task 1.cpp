@@ -38,10 +38,10 @@ void logFile(char** argv, int fileName) {
 	if (myStream.is_open()) {
 		cout << endl << "ENTER FROM KEYBOARD:" << endl;
 		while (1) {
-			char symbol = getchar();            // Get one character from the input
+			char symbol = getchar();           
 			if (symbol == EOF) {
 				break;
-			}  // Exit the loop if we receive EOF ("end of file")
+			}  
 			myStream << symbol;
 		}
 	}
