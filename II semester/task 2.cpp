@@ -18,24 +18,6 @@ void getHelp() {
 	exit(0);
 }
 
-void createMode(string fileName) {
-	cout << endl << "=C=R=E=A=T=E= =M=O=D=E" << endl;
-
-	std::ofstream myStream;
-	myStream.open(fileName);
-	if (myStream.is_open()) {
-		cout << endl << "ENTER FROM KEYBOARD:" << endl;
-		while (1) {
-			char symbol = getchar();            // Get one character from the input
-			if (symbol == EOF) {
-				break;
-			}  // Exit the loop if we receive EOF ("end of file")
-			myStream << symbol;
-		}
-	}
-	myStream.close();
-}
-
 void parserCliArguments(int argc, char** argv, string &fileName, int &N, string &mode) {
 	if (argc > 1) {
 		vector<string> vAllCliArguments;
@@ -51,7 +33,7 @@ void parserCliArguments(int argc, char** argv, string &fileName, int &N, string 
 				otherArgument = false;
 			}
 
-			if (vAllCliArguments[i] == "-c") {
+			if (vAllCliArguments[i] == "-c" || vAllCliArguments[i] == "-r") {
 				if (vAllCliArguments.size() - 1 >= i + 1) {
 					string subject = vAllCliArguments[i + 1];
 					if (subject[0] != '-') {
@@ -63,7 +45,12 @@ void parserCliArguments(int argc, char** argv, string &fileName, int &N, string 
 								fileName = subject.substr(1 + subject.find(delim));
 								string tmpN = subject.substr(0, subject.find(delim) );
 								N = atoi(tmpN.c_str());
+								if(vAllCliArguments[i] == "-c"){
 								mode = "create";
+								}
+								else {
+									mode = "read";
+								}
 								otherArgument = false;
 								i++;
 							}
@@ -100,8 +87,42 @@ void parserCliArguments(int argc, char** argv, string &fileName, int &N, string 
 		cout << endl << "Err. Empty cli args list. See help";
 		getHelp();
 	}
+}
 
+void createMode(string fileName) {
+	cout << endl << "=C=R=E=A=T=E= =M=O=D=E" << endl;
 
+	std::ofstream myStream;
+	myStream.open(fileName);
+	if (myStream.is_open()) {
+		cout << endl << "ENTER FROM KEYBOARD:" << endl;
+		while (1) {
+			char symbol = getchar();            // Get one character from the input
+			if (symbol == EOF) {
+				break;
+			}  // Exit the loop if we receive EOF ("end of file")
+			myStream << symbol;
+		}
+	}
+	myStream.close();
+}
+
+void readMode(string fileName) {
+	cout << endl << "=R=E=A=D= =M=O=D=E" << endl;
+
+	std::ofstream myStream;
+	myStream.open(fileName);
+	if (myStream.is_open()) {
+		cout << endl << "ENTER FROM KEYBOARD:" << endl;
+		while (1) {
+			char symbol = getchar();            // Get one character from the input
+			if (symbol == EOF) {
+				break;
+			}  // Exit the loop if we receive EOF ("end of file")
+			myStream << symbol;
+		}
+	}
+	myStream.close();
 }
 
 int main(int argc, char** argv) {
@@ -116,5 +137,9 @@ int main(int argc, char** argv) {
 	if (mode == "create") {
 		createMode(fileName);
 	}
+	if (mode == "read") {
+		readMode(fileName);
+	}
+
 	return 0;
 }
