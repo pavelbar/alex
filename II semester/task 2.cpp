@@ -18,8 +18,8 @@ void getHelp() {
 	exit(0);
 }
 
-void recordingMode(string fileName) {
-	cout << endl << "=R=E=C=O=R=D=I=N=G= =M=O=D=E" << endl;
+void createMode(string fileName) {
+	cout << endl << "=C=R=E=A=T=E= =M=O=D=E" << endl;
 
 	std::ofstream myStream;
 	myStream.open(fileName);
@@ -36,7 +36,7 @@ void recordingMode(string fileName) {
 	myStream.close();
 }
 
-void parserCliArguments(int argc, char** argv) {
+void parserCliArguments(int argc, char** argv, string &fileName, int &N, string &mode) {
 	if (argc > 1) {
 		vector<string> vAllCliArguments;
 		vector<string> vIncorrectCliArguments;
@@ -51,7 +51,7 @@ void parserCliArguments(int argc, char** argv) {
 				otherArgument = false;
 			}
 
-			if (vAllCliArguments[i] == "-r") {
+			if (vAllCliArguments[i] == "-c") {
 				if (vAllCliArguments.size() - 1 >= i + 1) {
 					string subject = vAllCliArguments[i + 1];
 					if (subject[0] != '-') {
@@ -60,10 +60,10 @@ void parserCliArguments(int argc, char** argv) {
 							char delim = ',';
 							int countDelim = count(subject.begin(), subject.end(), delim);
 							if (countDelim == 1) {
-								string fileName = subject.substr(1 + subject.find(delim));
-								cout << endl << "-> file name: " << fileName;
-								cout << endl << "-> N: " << fileName;
-								//recordingMode(fileName);
+								fileName = subject.substr(1 + subject.find(delim));
+								string tmpN = subject.substr(0, subject.find(delim) );
+								N = atoi(tmpN.c_str());
+								mode = "create";
 								otherArgument = false;
 								i++;
 							}
@@ -89,11 +89,10 @@ void parserCliArguments(int argc, char** argv) {
 		}
 
 		if (vIncorrectCliArguments.size() != 0) {
-			cout << endl << "Incorrect cli args detected:";
+			cout << endl << "Err. Incorrect cli args detected:";
 			for (auto i = vIncorrectCliArguments.begin(); i != vIncorrectCliArguments.end(); i++) {
 				cout << endl << "-> " << *i;
 			}
-			cout << endl << "Read Help to avoid mistakes.";
 			getHelp();
 		}
 	}
@@ -106,6 +105,16 @@ void parserCliArguments(int argc, char** argv) {
 }
 
 int main(int argc, char** argv) {
-	parserCliArguments(argc, argv);
+	string fileName;
+	int N = -1;
+	string mode;
+	parserCliArguments(argc, argv, fileName, N, mode);
+	cout << endl << "-> file name: " << fileName;
+	cout << endl << "-> N: " << N;
+	cout << endl << "-> mode: " << mode;
+
+	if (mode == "create") {
+		createMode(fileName);
+	}
 	return 0;
 }
