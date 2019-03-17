@@ -133,7 +133,7 @@ vector<TicketOffice> inputMode(int N) {
 }
 
 void printMode(vector<TicketOffice> vMyTicketOffice) {
-	cout << endl << "-> =P=R=I=N=T= =M=O=D=E";
+	cout << endl << endl << "-> =P=R=I=N=T= =M=O=D=E";
 
 	for (int i = 0; i < vMyTicketOffice.size(); i++) {
 		cout << endl << endl << "Serial number " << i + 1 << "(of " << vMyTicketOffice.size() << ")";
@@ -156,28 +156,80 @@ void printMode(vector<TicketOffice> vMyTicketOffice) {
 	}
 }
 
-void writeMode(vector<TicketOffice> vMyTicketOffice, string fileName) {
+void writeMode(vector<TicketOffice> vMyTicketOffice, string fileName, int N) {
 	cout << endl << endl << "-> =W=R=I=T=E= =M=O=D=E" << endl;
-	std::ofstream myStream;
-	myStream.open(fileName);
-	if (myStream.is_open()) {
-			for (int i = 0; i < vMyTicketOffice.size(); i++) {
-				myStream << vMyTicketOffice[i].ticketNumber << '\n';
-				myStream << vMyTicketOffice[i].fullNameCashier << '\n';
-				myStream << vMyTicketOffice[i].amountSoldTickets << '\n';
-				myStream << vMyTicketOffice[i].totalRevenue << '\n';
-				myStream << vMyTicketOffice[i].salesDate << '\n';
+	ofstream myOutStream;
+	myOutStream.open(fileName);
+	myOutStream << N << '\n';
+	if (myOutStream.is_open()) {
+		for (int i = 0; i < vMyTicketOffice.size(); i++) {
+			myOutStream << vMyTicketOffice[i].ticketNumber << '\n';
+			myOutStream << vMyTicketOffice[i].fullNameCashier << '\n';
+			myOutStream << vMyTicketOffice[i].amountSoldTickets << '\n';
+			myOutStream << vMyTicketOffice[i].totalRevenue << '\n';
+			myOutStream << vMyTicketOffice[i].salesDate << '\n';
 		}
 	}
 	else {
 		cout << endl << "Err open file.";
 	}
-	myStream.close();
+	myOutStream.close();
+	cout << endl << "Job done";
 }
 
-void readMode(string fileName, vector<TicketOffice> &vMyTicketOffice, int N) {
-	cout << endl << "=R=E=A=D= =M=O=D=E" << endl;
+vector<TicketOffice> readMode(string fileName, int N) {
+	vector<TicketOffice> vMyTicketOffice;
+	cout << endl << endl << "-> =R=E=A=D= =M=O=D=E";
+	ifstream myInStream;
+	myInStream.open(fileName);
 
+	string line;
+	getline(myInStream, line);
+
+	if (!myInStream)
+	{
+		if (myInStream.eof()) {
+			cout << endl << "Err. Empty file";
+		}
+		else {
+			cout << endl << "File not found or other failure";
+		}
+	}
+
+	if (myInStream.is_open()) {
+		int realN = atoi(line.c_str());
+		cout << endl << "Real N = " << realN;
+
+		if (N > realN) {
+			cout << endl << "Err. Wrong N";
+		}
+		else {
+			for (int i = 0; i < N; i++) {
+				TicketOffice elt;
+
+				getline(myInStream, line);
+				elt.ticketNumber = line;
+
+				getline(myInStream, line);
+				elt.fullNameCashier = line;
+
+				getline(myInStream, line);
+				elt.amountSoldTickets = line;
+
+				getline(myInStream, line);
+				elt.totalRevenue = line;
+
+				getline(myInStream, line);
+				elt.salesDate = line;
+
+				vMyTicketOffice.push_back(elt);
+			}
+		}
+
+	}
+	myInStream.close();
+	cout << endl << "Job done";
+	return vMyTicketOffice;
 }
 
 int main(int argc, char** argv) {
@@ -194,10 +246,11 @@ int main(int argc, char** argv) {
 	if (mode == "create") {
 		vMyTicketOffice = inputMode(N);
 		printMode(vMyTicketOffice);
-		writeMode(vMyTicketOffice, fileName);
+		writeMode(vMyTicketOffice, fileName, N);
 	}
 	if (mode == "read") {
-		readMode(fileName, vMyTicketOffice, N);
+		vMyTicketOffice = readMode(fileName, N);
+		printMode(vMyTicketOffice);
 	}
 
 	return 0;
