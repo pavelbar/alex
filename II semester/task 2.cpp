@@ -103,37 +103,37 @@ void parserCliArguments(int argc, char** argv, string &fileName, int &N, string 
 	}
 }
 
-vector<TicketOffice> inputMode(string fileName, int N) {
+vector<TicketOffice> inputMode(int N) {
 	vector<TicketOffice> vMyTicketOffice;
 	cout << endl << endl << "-> =I=N=P=U=T= =M=O=D=E";
 	cout << endl << "ENTER FROM KEYBOARD:" << endl;
-		for (int i = 0; i < N; i++) {
-			TicketOffice elt;
+	for (int i = 0; i < N; i++) {
+		TicketOffice elt;
 
-			cout << endl << "Serial number " << i + 1 << "(of " <<N <<")" ;
+		cout << endl << "Serial number " << i + 1 << "(of " << N << ")";
 
-			cout << endl  << elt.nameTicketNumber;
-			cin >> elt.ticketNumber;
+		cout << endl << elt.nameTicketNumber;
+		cin >> elt.ticketNumber;
 
-			cout << elt.nameFullNameCashier;
-			cin >> elt.fullNameCashier;
+		cout << elt.nameFullNameCashier;
+		cin >> elt.fullNameCashier;
 
-			cout  << elt.nameAmountSoldTickets;
-			cin >> elt.amountSoldTickets;
+		cout << elt.nameAmountSoldTickets;
+		cin >> elt.amountSoldTickets;
 
-			cout  << elt.nameTotalRevenue;
-			cin >> elt.totalRevenue;
+		cout << elt.nameTotalRevenue;
+		cin >> elt.totalRevenue;
 
-			cout  << elt.nameSalesDate;
-			cin >> elt.salesDate;
+		cout << elt.nameSalesDate;
+		cin >> elt.salesDate;
 
-			vMyTicketOffice.push_back(elt);
-		}
-		return vMyTicketOffice;
+		vMyTicketOffice.push_back(elt);
+	}
+	return vMyTicketOffice;
 }
 
 void printMode(vector<TicketOffice> vMyTicketOffice) {
-	cout << endl << "-> =P=R=I=N=T= =M=O=D=E" ;
+	cout << endl << "-> =P=R=I=N=T= =M=O=D=E";
 
 	for (int i = 0; i < vMyTicketOffice.size(); i++) {
 		cout << endl << endl << "Serial number " << i + 1 << "(of " << vMyTicketOffice.size() << ")";
@@ -156,22 +156,28 @@ void printMode(vector<TicketOffice> vMyTicketOffice) {
 	}
 }
 
+void writeMode(vector<TicketOffice> vMyTicketOffice, string fileName) {
+	cout << endl << endl << "-> =W=R=I=T=E= =M=O=D=E" << endl;
+	std::ofstream myStream;
+	myStream.open(fileName);
+	if (myStream.is_open()) {
+			for (int i = 0; i < vMyTicketOffice.size(); i++) {
+				myStream << vMyTicketOffice[i].ticketNumber << '\n';
+				myStream << vMyTicketOffice[i].fullNameCashier << '\n';
+				myStream << vMyTicketOffice[i].amountSoldTickets << '\n';
+				myStream << vMyTicketOffice[i].totalRevenue << '\n';
+				myStream << vMyTicketOffice[i].salesDate << '\n';
+		}
+	}
+	else {
+		cout << endl << "Err open file.";
+	}
+	myStream.close();
+}
+
 void readMode(string fileName, vector<TicketOffice> &vMyTicketOffice, int N) {
 	cout << endl << "=R=E=A=D= =M=O=D=E" << endl;
 
-	//std::ofstream myStream;
-	//myStream.open(fileName);
-	//if (myStream.is_open()) {
-	//	cout << endl << "ENTER FROM KEYBOARD:" << endl;
-	//	while (1) {
-	//		char symbol = getchar();            // Get one character from the input
-	//		if (symbol == EOF) {
-	//			break;
-	//		}  // Exit the loop if we receive EOF ("end of file")
-	//		myStream << symbol;
-	//	}
-	//}
-	//myStream.close();
 }
 
 int main(int argc, char** argv) {
@@ -185,10 +191,10 @@ int main(int argc, char** argv) {
 
 	vector <TicketOffice> vMyTicketOffice;
 
-
 	if (mode == "create") {
-		vMyTicketOffice = inputMode(fileName, N);
+		vMyTicketOffice = inputMode(N);
 		printMode(vMyTicketOffice);
+		writeMode(vMyTicketOffice, fileName);
 	}
 	if (mode == "read") {
 		readMode(fileName, vMyTicketOffice, N);
