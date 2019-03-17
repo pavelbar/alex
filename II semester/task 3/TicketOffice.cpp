@@ -1,13 +1,5 @@
 #include "TicketOffice.h"
 
-//TicketOffice::TicketOffice()
-//{
-//}
-//
-//TicketOffice::~TicketOffice()
-//{
-//}
-
 string TicketOffice::GetTicketNumber(void) const
 {
 	return ticketNumber;
