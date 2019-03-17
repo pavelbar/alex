@@ -8,22 +8,6 @@
 
 using namespace std;
 
-
-//struct TicketOffice
-//{
-//	string ticketNumber;//номер кассы
-//	string fullNameCashier;//ФИО кассира
-//	string amountSoldTickets;//Кол-во проанных билетов
-//	string totalRevenue;//Суммарная выручка
-//	string salesDate;//Дата продажи
-//
-//	const string nameTicketNumber = "Ticket number: ";
-//	const string nameFullNameCashier = "Full name cashier: ";
-//	const string nameAmountSoldTickets = "Amount sold tickets: ";
-//	const string nameTotalRevenue = "Total revenue: ";
-//	const string nameSalesDate = "Sales date: ";
-//};
-
 void getHelp() {
 	cout << endl << "========================HELP=======================";//Правила использования, цель назначения иинформацию о разработчике
 	cout << endl << "===================================================";
