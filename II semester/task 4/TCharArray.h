@@ -27,5 +27,7 @@ public:
 	friend ostream &operator<<(ostream &ostr, const TCharArray &arr);
 	TCharArray& operator=(const TCharArray &arr);
 	TCharArray operator+ (const TCharArray &arr);
+	int operator<(const TCharArray &arr) const;
+	int operator>(const TCharArray &arr) const;
 };
 
