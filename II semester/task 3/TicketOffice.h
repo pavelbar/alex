@@ -31,4 +31,3 @@ public:
 	string GetNameTotalRevenue(void) const;
 	string GetNameSalesDate(void) const;
 };
-
