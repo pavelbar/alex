@@ -161,3 +161,24 @@ TCharArray TCharArray::operator+(const TCharArray &arr) //+
 
 	return newArr;
 }
+
+int TCharArray::operator<(const TCharArray &arr) const//+
+{
+	cout << endl << "!DBG TCharArray: <";
+	int result = 1;
+	if (len > arr.len) {
+		result = 0;
+	}
+	return result;
+}
+
+int TCharArray::operator>(const TCharArray &arr) const//+
+{
+	cout << endl << "!DBG TCharArray: >";
+	if (*this < arr) {
+		return 0;
+	}
+	else {
+		return 1;
+	}
+}
