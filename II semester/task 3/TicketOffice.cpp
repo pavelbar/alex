@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "TicketOffice.h"
 
 string TicketOffice::GetTicketNumber(void) const
