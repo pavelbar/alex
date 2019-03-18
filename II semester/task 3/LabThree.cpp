@@ -1,5 +1,6 @@
 //ЛАБОРАТОРНАЯ РАБОТА №3 ВАРИАНТ 7 Проектирование и использование классов
 
+#include "pch.h"
 #include <iostream>
 #include <fstream> //LOG
 #include <vector> 
@@ -38,7 +39,7 @@ void parserCliArguments(int argc, char** argv, string &fileName, int &N, string 
 					string subject = vAllCliArguments[i + 1];
 					if (subject[0] != '-') {
 						int len = subject.length();
-						if ((subject[len - 1] == 't') && (subject[len - 2] == 'x') && (subject[len - 3] == 't') && (subject[len - 4] == '.')) {
+						if ((subject[len - 1] == 'n') && (subject[len - 2] == 'i') && (subject[len - 3] == 'b') && (subject[len - 4] == '.')) {
 							char delim = ',';
 							int countDelim = count(subject.begin(), subject.end(), delim);
 							if (countDelim == 1) {
@@ -150,17 +151,39 @@ void printMode(vector<TicketOffice> vMyTicketOffice) {
 
 void writeMode(vector<TicketOffice> vMyTicketOffice, string fileName, int N) {
 	cout << endl << endl << "-> =W=R=I=T=E= =M=O=D=E" << endl;
-	ofstream myOutStream;
-	myOutStream.open(fileName);
-	myOutStream << N << '\n';
+	ofstream myOutStream(fileName, ios::binary);
 	if (myOutStream.is_open()) {
+		myOutStream.write((char*)&N, sizeof(N));
+
 		for (int i = 0; i < vMyTicketOffice.size(); i++) {
-			myOutStream << vMyTicketOffice[i].GetTicketNumber() << '\n';
-			myOutStream << vMyTicketOffice[i].GetFullNameCashier() << '\n';
-			myOutStream << vMyTicketOffice[i].GetAmountSoldTickets() << '\n';
-			myOutStream << vMyTicketOffice[i].GetTotalRevenue() << '\n';
-			myOutStream << vMyTicketOffice[i].GetSalesDate() << '\n';
-		}
+			string str; 
+			size_t len = -1;
+
+			str = vMyTicketOffice[i].GetTicketNumber();
+			len = str.length() + 1;       
+			myOutStream.write((char*)&len, sizeof(len)); 
+			myOutStream.write((char*)str.c_str(), len); 
+
+			str = vMyTicketOffice[i].GetFullNameCashier();
+			len = str.length() + 1;       
+			myOutStream.write((char*)&len, sizeof(len)); 
+			myOutStream.write((char*)str.c_str(), len);  
+
+			str = vMyTicketOffice[i].GetAmountSoldTickets();
+			len = str.length() + 1;       
+			myOutStream.write((char*)&len, sizeof(len));
+			myOutStream.write((char*)str.c_str(), len);  
+
+			str = vMyTicketOffice[i].GetTotalRevenue();
+			len = str.length() + 1;       
+			myOutStream.write((char*)&len, sizeof(len)); 
+			myOutStream.write((char*)str.c_str(), len);  
+
+			str = vMyTicketOffice[i].GetSalesDate();
+			len = str.length() + 1;       
+			myOutStream.write((char*)&len, sizeof(len)); 
+			myOutStream.write((char*)str.c_str(), len);  
+			}
 	}
 	else {
 		cout << endl << "Err open file.";
@@ -172,11 +195,7 @@ void writeMode(vector<TicketOffice> vMyTicketOffice, string fileName, int N) {
 vector<TicketOffice> readMode(string fileName, int N) {
 	vector<TicketOffice> vMyTicketOffice;
 	cout << endl << endl << "-> =R=E=A=D= =M=O=D=E";
-	ifstream myInStream;
-	myInStream.open(fileName);
-
-	string line;
-	getline(myInStream, line);
+	ifstream myInStream(fileName, ios::binary);
 
 	if (!myInStream)
 	{
@@ -189,7 +208,8 @@ vector<TicketOffice> readMode(string fileName, int N) {
 	}
 
 	if (myInStream.is_open()) {
-		int realN = atoi(line.c_str());
+		int realN = -1;
+		myInStream.read((char*)&realN, sizeof(realN));
 		cout << endl << "Real N = " << realN;
 
 		if (N > realN) {
@@ -198,21 +218,38 @@ vector<TicketOffice> readMode(string fileName, int N) {
 		else {
 			for (int i = 0; i < N; i++) {
 				TicketOffice elt;
+				size_t len;
+				char * buf;
+								                       
+				myInStream.read((char*)&len, sizeof(len)); 
+				buf = new char[len];         
+				myInStream.read(buf, len);                  
+				elt.SetTicketNumber(buf);                       
+				delete[]buf;     
 
-				getline(myInStream, line);
-				elt.SetTicketNumber(line);
+				myInStream.read((char*)&len, sizeof(len));
+				buf = new char[len];
+				myInStream.read(buf, len);
+				elt.SetFullNameCashier(buf);
+				delete[]buf;
 
-				getline(myInStream, line);
-				elt.SetFullNameCashier(line);
+				myInStream.read((char*)&len, sizeof(len));
+				buf = new char[len];
+				myInStream.read(buf, len);
+				elt.SetAmountSoldTickets(buf);
+				delete[]buf;
 
-				getline(myInStream, line);
-				elt.SetAmountSoldTickets(line);
+				myInStream.read((char*)&len, sizeof(len));
+				buf = new char[len];
+				myInStream.read(buf, len);
+				elt.SetTotalRevenue(buf);
+				delete[]buf;
 
-				getline(myInStream, line);
-				elt.SetTotalRevenue(line);
-
-				getline(myInStream, line);
-				elt.SetSalesDate(line);
+				myInStream.read((char*)&len, sizeof(len));
+				buf = new char[len];
+				myInStream.read(buf, len);
+				elt.SetSalesDate(buf);
+				delete[]buf;
 
 				vMyTicketOffice.push_back(elt);
 			}
