@@ -10,9 +10,9 @@ protected:
 
 public:
 	TCharArray(const char* arr);
-	TCharArray(const int len);//+
-	TCharArray(const TCharArray &arr);//КК
-	TCharArray();//КПУ
+	TCharArray(const int len);
+	TCharArray(const TCharArray &arr);
+	TCharArray();
 	~TCharArray();
 
 	size_t GetStrLen(const char* str);
@@ -24,6 +24,5 @@ public:
 	TCharArray operator+ (const TCharArray &arr);
 	int operator<(const TCharArray &arr) const;
 	int operator>(const TCharArray &arr) const;
-	
 };
 
