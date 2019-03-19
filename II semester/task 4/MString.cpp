@@ -30,3 +30,35 @@ char* MString::GetCharArray(void) const
 {
 	return pMem;
 }
+
+int MString::GetCountdelim(const char delim) const
+{
+	int count = 0;
+	for (size_t i = 0; i < len; i++) {
+		if (pMem[i] == delim) {
+			count++;
+		}
+	}
+	return count;
+}
+
+
+
+MString MString::GetSubString(const int pos) const
+{
+	if (pos > len) {
+		throw ("pos>len...");
+	}
+	if (pos < 0) {
+		throw ("pos<0...");
+	}
+	size_t nlen = len - pos;
+	char* buf = new char[len];
+	int j = 0;
+	for (size_t i = pos; i < len; i++) {
+		buf[j] = pMem[i];
+		j++;
+	}
+	buf[len-2] = '\0';
+	return MString(buf);
+}
