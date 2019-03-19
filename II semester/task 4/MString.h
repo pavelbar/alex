@@ -18,7 +18,6 @@ public:
 	MString GetSubString(const int pos) const;
 	int Find(const char symbol) const;
 	MString GetSubString(const int spos, const int fpos) const;
-
-
+	int ToInteger(void) const;
 };
 
