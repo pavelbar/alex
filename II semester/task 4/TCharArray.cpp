@@ -152,4 +152,3 @@ int TCharArray::operator>(const TCharArray &arr) const
 		return 1;
 	}
 }
-
