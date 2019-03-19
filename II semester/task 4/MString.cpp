@@ -89,7 +89,7 @@ MString MString::GetSubString(const int spos, const int fpos) const
 	}
 
 	size_t nlen = fpos - spos;
-	char* buf = new char[nlen +1];
+	char* buf = new char[nlen + 1];
 	int j = 0;
 	for (size_t i = spos; i < fpos; i++) {
 		buf[j] = pMem[i];
@@ -97,4 +97,16 @@ MString MString::GetSubString(const int spos, const int fpos) const
 	}
 	buf[nlen] = '\0';
 	return MString(buf);
+}
+
+int MString::ToInteger(void) const
+{
+	char* s = pMem;
+	int n = 0;
+	while (*s >= '0' && *s <= '9') {
+		n *= 10;
+		n += *s++;
+		n -= '0';
+	}
+	return n;
 }
