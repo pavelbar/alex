@@ -115,27 +115,27 @@ vector<TicketOffice> inputMode(int N) {
 
 		cout << endl << "Serial number " << i + 1 << "(of " << N << ")";
 
-		cout << endl << elt.GetNameTicketNumber().GetCharArray();
+		cout << endl << elt.GetNameTicketNumber() ;
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetTicketNumber(input);
 
-		cout << elt.GetNameFullNameCashier().GetCharArray();
+		cout << elt.GetNameFullNameCashier() ;
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetFullNameCashier(input);
 
-		cout << elt.GetNameAmountSoldTickets().GetCharArray();
+		cout << elt.GetNameAmountSoldTickets() ;
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetAmountSoldTickets(input);
 
-		cout << elt.GetNameTotalRevenue().GetCharArray();
+		cout << elt.GetNameTotalRevenue() ;
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetTotalRevenue(input);
 
-		cout << elt.GetNameSalesDate().GetCharArray();
+		cout << elt.GetNameSalesDate() ;
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetSalesDate(input);
@@ -151,20 +151,20 @@ void printMode(vector<TicketOffice> vMyTicketOffice) {
 	for (int i = 0; i < vMyTicketOffice.size(); i++) {
 		cout << endl << endl << "Serial number " << i + 1 << "(of " << vMyTicketOffice.size() << ")";
 
-		cout << endl << vMyTicketOffice[i].GetNameTicketNumber().GetCharArray();
-		cout << vMyTicketOffice[i].GetTicketNumber().GetCharArray();
+		cout << endl << vMyTicketOffice[i].GetNameTicketNumber() ;
+		cout << vMyTicketOffice[i].GetTicketNumber() ;
 
-		cout << endl << vMyTicketOffice[i].GetNameFullNameCashier().GetCharArray();
-		cout << vMyTicketOffice[i].GetFullNameCashier().GetCharArray();
+		cout << endl << vMyTicketOffice[i].GetNameFullNameCashier() ;
+		cout << vMyTicketOffice[i].GetFullNameCashier() ;
 
-		cout << endl << vMyTicketOffice[i].GetNameAmountSoldTickets().GetCharArray();
-		cout << vMyTicketOffice[i].GetAmountSoldTickets().GetCharArray();
+		cout << endl << vMyTicketOffice[i].GetNameAmountSoldTickets() ;
+		cout << vMyTicketOffice[i].GetAmountSoldTickets() ;
 
-		cout << endl << vMyTicketOffice[i].GetNameTotalRevenue().GetCharArray();
-		cout << vMyTicketOffice[i].GetTotalRevenue().GetCharArray();
+		cout << endl << vMyTicketOffice[i].GetNameTotalRevenue() ;
+		cout << vMyTicketOffice[i].GetTotalRevenue() ;
 
-		cout << endl << vMyTicketOffice[i].GetNameSalesDate().GetCharArray();
-		cout << vMyTicketOffice[i].GetSalesDate().GetCharArray();
+		cout << endl << vMyTicketOffice[i].GetNameSalesDate() ;
+		cout << vMyTicketOffice[i].GetSalesDate() ;
 
 	}
 }
@@ -183,7 +183,7 @@ void writeMode(vector<TicketOffice> vMyTicketOffice, MString fileName, int N) {
 			str = vMyTicketOffice[i].GetTicketNumber();
 			len = str.Size();
 			myOutStream.write((char*)&len, sizeof(len));
-			myOutStream.write((char*)str.GetCharArray(), len);
+			myOutStream.write((char*)str.GetCharArray() , len);
 
 			str = vMyTicketOffice[i].GetFullNameCashier();
 			len = str.Size();
@@ -289,9 +289,9 @@ int main(int argc, char** argv) {
 	int N = -1;
 	MString mode;
 	parserCliArguments(argc, argv, fileName, N, mode);
-	cout << endl << "-> file name: " << fileName.GetCharArray();
+	cout << endl << "-> file name: " << fileName ;
 	cout << endl << "-> N: " << N;
-	cout << endl << "-> mode: " << mode.GetCharArray();
+	cout << endl << "-> mode: " << mode ;
 
 	vector <TicketOffice> vMyTicketOffice;
 
