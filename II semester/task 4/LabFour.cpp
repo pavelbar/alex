@@ -244,32 +244,37 @@ vector<TicketOffice> readMode(MString fileName, int N) {
 				char * buf;
 
 				myInStream.read((char*)&len, sizeof(len));
-				buf = new char[len];
+				buf = new char[len+1];
 				myInStream.read(buf, len);
+				buf[len] = '\0';
 				elt.SetTicketNumber(buf);
 				delete[]buf;
 
 				myInStream.read((char*)&len, sizeof(len));
-				buf = new char[len];
+				buf = new char[len + 1];
 				myInStream.read(buf, len);
+				buf[len] = '\0';
 				elt.SetFullNameCashier(buf);
 				delete[]buf;
 
 				myInStream.read((char*)&len, sizeof(len));
-				buf = new char[len];
+				buf = new char[len + 1];
 				myInStream.read(buf, len);
+				buf[len] = '\0';
 				elt.SetAmountSoldTickets(buf);
 				delete[]buf;
 
 				myInStream.read((char*)&len, sizeof(len));
-				buf = new char[len];
+				buf = new char[len + 1];
 				myInStream.read(buf, len);
+				buf[len] = '\0';
 				elt.SetTotalRevenue(buf);
 				delete[]buf;
 
 				myInStream.read((char*)&len, sizeof(len));
-				buf = new char[len];
+				buf = new char[len + 1];
 				myInStream.read(buf, len);
+				buf[len] = '\0';
 				elt.SetSalesDate(buf);
 				delete[]buf;
 
