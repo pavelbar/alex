@@ -14,4 +14,8 @@ public:
 	~MString();
 	friend ostream &operator<<(ostream &ostr, const MString &s);
 	char* GetCharArray(void) const;
+	int GetCountdelim(const char delim) const;
+	MString GetSubString(const int pos) const;
+
 };
+
