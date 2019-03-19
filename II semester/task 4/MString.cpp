@@ -6,28 +6,35 @@ using  std::cout;
 
 MString::MString(const char* arr) : TCharArray(arr)
 {
-	cout << endl << "!!!DBG MString: Конструктор (const char* arr)" << endl;
+	//cout << endl << "!!!DBG MString: Конструктор (const char* arr)" << endl;
+}
+
+MString::MString() : TCharArray()
+{
+	//cout << endl << "!!!DBG MString: Конструктор по умолчанию" << endl;
 }
 
 MString::~MString()
 {
-	cout << endl << "!!!DBG MString: Деструктор" << endl;
+	//cout << endl << "!!!DBG MString: Деструктор" << endl;
 }
 
 size_t MString::Size(void) const
 {
-	cout << endl << "!!!DBG MString: Size" << endl;
+	//cout << endl << "!!!DBG MString: Size" << endl;
 	return len;
 }
 
 ostream& operator<<(ostream &ostr, const MString &arr)
 {
-	cout << endl << "!!!DBG MString: <<";
-	ostr << endl << endl << "-> Print MString" << endl;
-	ostr << "-> lenght of MString = " << arr.len << endl;
+	//cout << endl << "!!!DBG MString: <<";
 	for (size_t i = 0; i < arr.len; i++) {
-		ostr << endl << "-> [" << i << "]= " << arr[i] << endl;
+		ostr << arr.pMem[i];
 	}
-	ostr << "-> end." << endl;
 	return ostr;
+}
+
+char* MString::GetCharArray(void) const
+{
+	return pMem;
 }
