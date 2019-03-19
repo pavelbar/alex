@@ -2,7 +2,7 @@
 
 #include "pch.h"
 #include <iostream>
-#include <fstream> //LOG
+#include <fstream>
 #include <vector> 
 #include "MString.h"
 #include "TicketOffice.h"
@@ -13,9 +13,10 @@ using  std::vector;
 using  std::cin;
 using  std::ofstream;
 using  std::ifstream;
-using  namespace std;//dell (ios::binary)
+using  std::ios;
 
 const int MAX_SIZE = 15;
+const char DELIM = ',';
 
 void getHelp() {
 	cout << endl << "========================HELP=======================";//Правила использования, цель назначения иинформацию о разработчике
@@ -48,9 +49,8 @@ void parserCliArguments(int argc, char** argv, MString &fileName, int &N, MStrin
 					if (subject[0] != '-') {
 						int len = subject.Size();
 						if ((subject[len - 1] == 'n') && (subject[len - 2] == 'i') && (subject[len - 3] == 'b') && (subject[len - 4] == '.')) {
-							char delim = ',';
-							//int countDelim = count(subject.begin(), subject.end(), delim);
-							int countDelim = 1;//dell
+							int countDelim = subject.GetCountdelim(DELIM);
+							cout << endl << "!!!!!!countDelim= " << countDelim;
 							if (countDelim == 1) {
 								//fileName = subject.substr(1 + subject.find(delim));
 								fileName = "aaa.bin";//dell
@@ -111,31 +111,31 @@ vector<TicketOffice> inputMode(int N) {
 		MString input;
 
 		char word[MAX_SIZE];  //new
-		
+
 
 		cout << endl << "Serial number " << i + 1 << "(of " << N << ")";
 
-		cout << endl << elt.GetNameTicketNumber() ;
+		cout << endl << elt.GetNameTicketNumber();
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetTicketNumber(input);
 
-		cout << elt.GetNameFullNameCashier() ;
+		cout << elt.GetNameFullNameCashier();
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetFullNameCashier(input);
 
-		cout << elt.GetNameAmountSoldTickets() ;
+		cout << elt.GetNameAmountSoldTickets();
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetAmountSoldTickets(input);
 
-		cout << elt.GetNameTotalRevenue() ;
+		cout << elt.GetNameTotalRevenue();
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetTotalRevenue(input);
 
-		cout << elt.GetNameSalesDate() ;
+		cout << elt.GetNameSalesDate();
 		cin >> word;		  //new
 		input = word;		  //new
 		elt.SetSalesDate(input);
@@ -151,20 +151,20 @@ void printMode(vector<TicketOffice> vMyTicketOffice) {
 	for (int i = 0; i < vMyTicketOffice.size(); i++) {
 		cout << endl << endl << "Serial number " << i + 1 << "(of " << vMyTicketOffice.size() << ")";
 
-		cout << endl << vMyTicketOffice[i].GetNameTicketNumber() ;
-		cout << vMyTicketOffice[i].GetTicketNumber() ;
+		cout << endl << vMyTicketOffice[i].GetNameTicketNumber();
+		cout << vMyTicketOffice[i].GetTicketNumber();
 
-		cout << endl << vMyTicketOffice[i].GetNameFullNameCashier() ;
-		cout << vMyTicketOffice[i].GetFullNameCashier() ;
+		cout << endl << vMyTicketOffice[i].GetNameFullNameCashier();
+		cout << vMyTicketOffice[i].GetFullNameCashier();
 
-		cout << endl << vMyTicketOffice[i].GetNameAmountSoldTickets() ;
-		cout << vMyTicketOffice[i].GetAmountSoldTickets() ;
+		cout << endl << vMyTicketOffice[i].GetNameAmountSoldTickets();
+		cout << vMyTicketOffice[i].GetAmountSoldTickets();
 
-		cout << endl << vMyTicketOffice[i].GetNameTotalRevenue() ;
-		cout << vMyTicketOffice[i].GetTotalRevenue() ;
+		cout << endl << vMyTicketOffice[i].GetNameTotalRevenue();
+		cout << vMyTicketOffice[i].GetTotalRevenue();
 
-		cout << endl << vMyTicketOffice[i].GetNameSalesDate() ;
-		cout << vMyTicketOffice[i].GetSalesDate() ;
+		cout << endl << vMyTicketOffice[i].GetNameSalesDate();
+		cout << vMyTicketOffice[i].GetSalesDate();
 
 	}
 }
@@ -183,7 +183,7 @@ void writeMode(vector<TicketOffice> vMyTicketOffice, MString fileName, int N) {
 			str = vMyTicketOffice[i].GetTicketNumber();
 			len = str.Size();
 			myOutStream.write((char*)&len, sizeof(len));
-			myOutStream.write((char*)str.GetCharArray() , len);
+			myOutStream.write((char*)str.GetCharArray(), len);
 
 			str = vMyTicketOffice[i].GetFullNameCashier();
 			len = str.Size();
@@ -244,7 +244,7 @@ vector<TicketOffice> readMode(MString fileName, int N) {
 				char * buf;
 
 				myInStream.read((char*)&len, sizeof(len));
-				buf = new char[len+1];
+				buf = new char[len + 1];
 				myInStream.read(buf, len);
 				buf[len] = '\0';
 				elt.SetTicketNumber(buf);
@@ -294,9 +294,9 @@ int main(int argc, char** argv) {
 	int N = -1;
 	MString mode;
 	parserCliArguments(argc, argv, fileName, N, mode);
-	cout << endl << "-> file name: " << fileName ;
+	cout << endl << "-> file name: " << fileName;
 	cout << endl << "-> N: " << N;
-	cout << endl << "-> mode: " << mode ;
+	cout << endl << "-> mode: " << mode;
 
 	vector <TicketOffice> vMyTicketOffice;
 
