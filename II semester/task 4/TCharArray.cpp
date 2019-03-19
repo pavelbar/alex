@@ -24,11 +24,12 @@ TCharArray::TCharArray() : len(0)
 TCharArray::TCharArray(const char* arr)
 {
 	len = (*this).GetStrLen(arr);
-	pMem = new char[len];
+	pMem = new char[len+1];
 	if (pMem != NULL)
-		for (size_t i = 0; i < len; i++) {
+		for (size_t i = 0; i < len + 1; i++) {
 			pMem[i] = arr[i];
 		}
+	pMem[len] = '\0';
 }
 
 TCharArray::TCharArray(const int nlen) : len(nlen)
@@ -47,12 +48,13 @@ TCharArray::TCharArray(const int nlen) : len(nlen)
 TCharArray::TCharArray(const TCharArray & arr)
 {
 	len = arr.len;
-	pMem = new char[len];
+	pMem = new char[len+1];
 	if (pMem != NULL) {
 		for (size_t i = 0; i < len; i++) {
 			pMem[i] = arr.pMem[i];
 		}
 	}
+	pMem[len] = '\0';
 }
 
 size_t TCharArray::GetStrLen(const char* str)
