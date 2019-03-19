@@ -42,8 +42,6 @@ int MString::GetCountdelim(const char delim) const
 	return count;
 }
 
-
-
 MString MString::GetSubString(const int pos) const
 {
 	if (pos > len) {
@@ -53,12 +51,50 @@ MString MString::GetSubString(const int pos) const
 		throw ("pos<0...");
 	}
 	size_t nlen = len - pos;
-	char* buf = new char[len];
+	char* buf = new char[nlen + 1];
 	int j = 0;
 	for (size_t i = pos; i < len; i++) {
 		buf[j] = pMem[i];
 		j++;
 	}
-	buf[len-2] = '\0';
+	buf[nlen] = '\0';
+	return MString(buf);
+}
+
+int MString::Find(const char symbol) const
+{
+	for (int i = 0; i < len; i++) {
+		if (pMem[i] == symbol) {
+			return i;
+		}
+	}
+}
+
+MString MString::GetSubString(const int spos, const int fpos) const
+{
+	if (fpos > len) {
+		throw ("fpos>len...");
+	}
+	if (fpos < 0) {
+		throw ("fpos<0...");
+	}
+	if (spos > len) {
+		throw ("spos>len...");
+	}
+	if (spos < 0) {
+		throw ("spos<0...");
+	}
+	if (spos > fpos) {
+		throw ("spos>fpos...");
+	}
+
+	size_t nlen = fpos - spos;
+	char* buf = new char[nlen +1];
+	int j = 0;
+	for (size_t i = spos; i < fpos; i++) {
+		buf[j] = pMem[i];
+		j++;
+	}
+	buf[nlen] = '\0';
 	return MString(buf);
 }
