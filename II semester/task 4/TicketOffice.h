@@ -4,11 +4,11 @@
 class TicketOffice
 {
 private:
-	MString ticketNumber;//номер кассы
-	MString fullNameCashier;//ФИО кассира
-	MString amountSoldTickets;//Кол-во проанных билетов
-	MString totalRevenue;//Суммарная выручка
-	MString salesDate;//Дата продажи
+	MString ticketNumber;
+	MString fullNameCashier;
+	MString amountSoldTickets;
+	MString totalRevenue;
+	MString salesDate;
 
 public:
 	MString GetTicketNumber(void) const;
