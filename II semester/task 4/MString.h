@@ -9,10 +9,9 @@ class MString : public TCharArray
 
 public:
 	size_t Size(void) const;
-	MString();//КПУ
+	MString();
 	MString(const char* arr);
 	~MString();
 	friend ostream &operator<<(ostream &ostr, const MString &s);
-	char* GetCharArray(void) const;//for write mode
+	char* GetCharArray(void) const;
 };
-
