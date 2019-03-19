@@ -25,4 +25,3 @@ public:
 	int operator<(const TCharArray &arr) const;
 	int operator>(const TCharArray &arr) const;
 };
-
