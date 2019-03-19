@@ -50,10 +50,12 @@ void parserCliArguments(int argc, char** argv, MString &fileName, int &N, MStrin
 						int len = subject.Size();
 						if ((subject[len - 1] == 'n') && (subject[len - 2] == 'i') && (subject[len - 3] == 'b') && (subject[len - 4] == '.')) {
 							int countDelim = subject.GetCountdelim(DELIM);
-							cout << endl << "!!!!!!countDelim= " << countDelim;
 							if (countDelim == 1) {
 								//fileName = subject.substr(1 + subject.find(delim));
-								fileName = "aaa.bin";//dell
+
+								fileName = subject.GetSubString(1 + 1);
+								cout << endl << "!!!!! fileName= " << fileName;
+				
 								//string tmpN = subject.substr(0, subject.find(delim));
 								//N = atoi(tmpN.c_str());
 								N = 2;//dell
@@ -76,7 +78,7 @@ void parserCliArguments(int argc, char** argv, MString &fileName, int &N, MStrin
 							}
 						}
 						else {
-							cout << endl << "Err. File type only TXT:";
+							cout << endl << "Err. File type only BIN:";
 						}
 					}
 				}
@@ -217,7 +219,7 @@ vector<TicketOffice> readMode(MString fileName, int N) {
 	vector<TicketOffice> vMyTicketOffice;
 	cout << endl << endl << "-> =R=E=A=D= =M=O=D=E";
 	//ifstream myInStream(fileName, ios::binary);
-	ifstream myInStream("aaa.bin", ios::binary);
+	ifstream myInStream(fileName.GetCharArray(), ios::binary);
 
 	if (!myInStream)
 	{
