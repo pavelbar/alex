@@ -52,12 +52,8 @@ void parserCliArguments(int argc, char** argv, MString &fileName, int &N, MStrin
 							int countDelim = subject.GetCountdelim(DELIM);
 							if (countDelim == 1) {
 								fileName = subject.GetSubString(1 + subject.Find(DELIM));
-								cout << endl << "!!!!! fileName= " << fileName;
-
-								//string tmpN = subject.substr(0, subject.find(delim));
 								MString tmpN = subject.GetSubString(0, subject.Find(DELIM));
-								//N = atoi(tmpN.c_str());
-								N = 2;//dell
+								N = tmpN.ToInteger();
 								if (vAllCliArguments[i] == "-c") {
 									mode = "create";
 								}
@@ -162,7 +158,7 @@ void printMode(vector<TicketOffice> vMyTicketOffice) {
 
 		cout << endl << vMyTicketOffice[i].GetNameSalesDate();
 		cout << vMyTicketOffice[i].GetSalesDate();
-		}
+	}
 }
 
 void writeMode(vector<TicketOffice> vMyTicketOffice, MString fileName, int N) {
