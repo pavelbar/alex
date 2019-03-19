@@ -21,7 +21,7 @@ TCharArray::TCharArray() : len(0)
 {
 }
 
-TCharArray::TCharArray(const char* arr)//+1
+TCharArray::TCharArray(const char* arr)
 {
 	len = (*this).GetStrLen(arr);
 	pMem = new char[len];
@@ -33,7 +33,6 @@ TCharArray::TCharArray(const char* arr)//+1
 
 TCharArray::TCharArray(const int nlen) : len(nlen)
 {
-	//cout << endl << "!DBG TCharArray: Конструктор (const int len)";
 	if (len <= 0) {
 		len = 0;
 		throw ("Len<0...");
@@ -47,7 +46,6 @@ TCharArray::TCharArray(const int nlen) : len(nlen)
 
 TCharArray::TCharArray(const TCharArray & arr)
 {
-	//cout << endl << "!DBG TCharArray: Конструктор копирования: (const TCharArray & arr)";
 	len = arr.len;
 	pMem = new char[len];
 	if (pMem != NULL) {
@@ -59,7 +57,6 @@ TCharArray::TCharArray(const TCharArray & arr)
 
 size_t TCharArray::GetStrLen(const char* str)
 {
-	//cout << endl << "!DBG TCharArray: GetStrLen";
 	const char *eos = str;
 	while (*eos++);
 	return((int)(eos - str - 1));
@@ -67,7 +64,6 @@ size_t TCharArray::GetStrLen(const char* str)
 
 char& TCharArray::At(const int n) const
 {
-	//cout << endl << "!DBG TCharArray: At";
 	if (n < 0) {
 		throw ("n < 0...");
 	}
@@ -79,13 +75,11 @@ char& TCharArray::At(const int n) const
 
 char& TCharArray::operator[] (const int n) const
 {
-	//cout << endl << "!DBG TCharArray: []";
 	return (*this).At(n);
 }
 
 int TCharArray::operator==(const TCharArray &arr) const
 {
-	//cout << endl << "!DBG TCharArray: ==";
 	int result = 1;
 	if (len != arr.len) {
 		result = 0;
@@ -102,7 +96,6 @@ int TCharArray::operator==(const TCharArray &arr) const
 
 int TCharArray::operator!=(const TCharArray &arr) const
 {
-	//cout << endl << "!DBG TCharArray: !=";
 	if (*this == arr) {
 		return 0;
 	}
@@ -113,7 +106,6 @@ int TCharArray::operator!=(const TCharArray &arr) const
 
 TCharArray & TCharArray::operator=(const TCharArray & arr)
 {
-	//cout << endl << "!DBG TCharArray: =";
 	if (pMem != arr.pMem) {
 		len = arr.len;
 		delete[]pMem;
@@ -127,7 +119,6 @@ TCharArray & TCharArray::operator=(const TCharArray & arr)
 
 TCharArray TCharArray::operator+(const TCharArray &arr)
 {
-	//cout << endl << "!DBG TCharArray: +";
 	TCharArray newArr(len + arr.len);
 	for (size_t i = 0; i < len; i++)
 	{
@@ -143,7 +134,6 @@ TCharArray TCharArray::operator+(const TCharArray &arr)
 
 int TCharArray::operator<(const TCharArray &arr) const
 {
-	//cout << endl << "!DBG TCharArray: <";
 	int result = 1;
 	if (len > arr.len) {
 		result = 0;
@@ -153,7 +143,6 @@ int TCharArray::operator<(const TCharArray &arr) const
 
 int TCharArray::operator>(const TCharArray &arr) const
 {
-	//cout << endl << "!DBG TCharArray: >";
 	if (*this < arr) {
 		return 0;
 	}
