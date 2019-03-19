@@ -51,12 +51,11 @@ void parserCliArguments(int argc, char** argv, MString &fileName, int &N, MStrin
 						if ((subject[len - 1] == 'n') && (subject[len - 2] == 'i') && (subject[len - 3] == 'b') && (subject[len - 4] == '.')) {
 							int countDelim = subject.GetCountdelim(DELIM);
 							if (countDelim == 1) {
-								//fileName = subject.substr(1 + subject.find(delim));
-
-								fileName = subject.GetSubString(1 + 1);
+								fileName = subject.GetSubString(1 + subject.Find(DELIM));
 								cout << endl << "!!!!! fileName= " << fileName;
-				
+
 								//string tmpN = subject.substr(0, subject.find(delim));
+								MString tmpN = subject.GetSubString(0, subject.Find(DELIM));
 								//N = atoi(tmpN.c_str());
 								N = 2;//dell
 								if (vAllCliArguments[i] == "-c") {
@@ -109,37 +108,33 @@ vector<TicketOffice> inputMode(int N) {
 	cout << endl << "ENTER FROM KEYBOARD:" << endl;
 	for (int i = 0; i < N; i++) {
 		TicketOffice elt;
-		//string input;
 		MString input;
-
-		char word[MAX_SIZE];  //new
-
-
+		char word[MAX_SIZE];
 		cout << endl << "Serial number " << i + 1 << "(of " << N << ")";
 
 		cout << endl << elt.GetNameTicketNumber();
-		cin >> word;		  //new
-		input = word;		  //new
+		cin >> word;
+		input = word;
 		elt.SetTicketNumber(input);
 
 		cout << elt.GetNameFullNameCashier();
-		cin >> word;		  //new
-		input = word;		  //new
+		cin >> word;
+		input = word;
 		elt.SetFullNameCashier(input);
 
 		cout << elt.GetNameAmountSoldTickets();
-		cin >> word;		  //new
-		input = word;		  //new
+		cin >> word;
+		input = word;
 		elt.SetAmountSoldTickets(input);
 
 		cout << elt.GetNameTotalRevenue();
-		cin >> word;		  //new
-		input = word;		  //new
+		cin >> word;
+		input = word;
 		elt.SetTotalRevenue(input);
 
 		cout << elt.GetNameSalesDate();
-		cin >> word;		  //new
-		input = word;		  //new
+		cin >> word;
+		input = word;
 		elt.SetSalesDate(input);
 
 		vMyTicketOffice.push_back(elt);
@@ -167,14 +162,12 @@ void printMode(vector<TicketOffice> vMyTicketOffice) {
 
 		cout << endl << vMyTicketOffice[i].GetNameSalesDate();
 		cout << vMyTicketOffice[i].GetSalesDate();
-
-	}
+		}
 }
 
 void writeMode(vector<TicketOffice> vMyTicketOffice, MString fileName, int N) {
 	cout << endl << endl << "-> =W=R=I=T=E= =M=O=D=E" << endl;
-	//ofstream myOutStream(fileName, ios::binary);
-	ofstream myOutStream("aaa.bin", ios::binary);//dell
+	ofstream myOutStream(fileName.GetCharArray(), ios::binary);
 	if (myOutStream.is_open()) {
 		myOutStream.write((char*)&N, sizeof(N));
 
@@ -218,9 +211,7 @@ void writeMode(vector<TicketOffice> vMyTicketOffice, MString fileName, int N) {
 vector<TicketOffice> readMode(MString fileName, int N) {
 	vector<TicketOffice> vMyTicketOffice;
 	cout << endl << endl << "-> =R=E=A=D= =M=O=D=E";
-	//ifstream myInStream(fileName, ios::binary);
 	ifstream myInStream(fileName.GetCharArray(), ios::binary);
-
 	if (!myInStream)
 	{
 		if (myInStream.eof()) {
@@ -283,7 +274,6 @@ vector<TicketOffice> readMode(MString fileName, int N) {
 				vMyTicketOffice.push_back(elt);
 			}
 		}
-
 	}
 	myInStream.close();
 	cout << endl << "Job done";
@@ -291,7 +281,6 @@ vector<TicketOffice> readMode(MString fileName, int N) {
 }
 
 int main(int argc, char** argv) {
-	setlocale(LC_ALL, "Russian");//dell
 	MString fileName;
 	int N = -1;
 	MString mode;
@@ -311,6 +300,5 @@ int main(int argc, char** argv) {
 		vMyTicketOffice = readMode(fileName, N);
 		printMode(vMyTicketOffice);
 	}
-
 	return 0;
 }
