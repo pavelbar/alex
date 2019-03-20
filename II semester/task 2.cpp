@@ -182,10 +182,7 @@ vector<TicketOffice> readMode(string fileName, int N) {
 	cout << endl << endl << "-> =R=E=A=D= =M=O=D=E";
 	ifstream myInStream;
 	myInStream.open(fileName);
-
-	string line;
-	getline(myInStream, line);
-
+	
 	if (!myInStream)
 	{
 		if (myInStream.eof()) {
@@ -197,6 +194,8 @@ vector<TicketOffice> readMode(string fileName, int N) {
 	}
 
 	if (myInStream.is_open()) {
+		string line;
+	getline(myInStream, line);
 		int realN = atoi(line.c_str());
 		cout << endl << "Real N = " << realN;
 
