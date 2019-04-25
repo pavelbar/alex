@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <algorithm>
+
 using namespace std;
 
 struct Top
@@ -15,7 +17,13 @@ struct Top
 	int size;
 	vector<int> neighbors;
 	int color;
+
+	bool operator <(const Top &rhs) {
+		return size < rhs.size;
+	}
 };
+
+
 
 vector<vector<int>> readMode(string fileName) {
 	cout << endl << endl << "-> =R=E=A=D= =M=O=D=E";
@@ -85,7 +93,7 @@ void printModeGraph(vector<Top> graph) {
 vector<Top> coloring(vector<Top> graph) {
 	cout << endl << endl << "-> =C=O=L=O=R=I=N=G= =G=R=A=P=H=";
 
-	//Is empty
+	sort(graph.begin(), graph.end());
 
 	cout << endl << "Job done";
 	return graph;
