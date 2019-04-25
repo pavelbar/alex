@@ -236,6 +236,19 @@ vector<Top> coloring(vector<Top> igraph) {
 	return igraph;
 }
 
+vector<Top> getGtaph(vector<vector<int>> inputData) {
+	vector<Top> graph;
+	for (int i = 0; i < inputData.size(); i++) {
+		Top tmp;
+		tmp.number = i;
+		tmp.size = inputData[i].size();
+		tmp.color = "-1";
+		tmp.neighbors = inputData[i];
+		graph.push_back(tmp);
+	}
+	return graph;
+}
+
 int main()
 {
 	string fileName = "in.txt";
@@ -246,16 +259,7 @@ int main()
 	printMode(inputData);
 
 	vector<Top> graph;
-
-	for (int i = 0; i < inputData.size(); i++) {
-		Top tmp;
-		tmp.number = i;
-		tmp.size = inputData[i].size();
-		tmp.color = "-1";
-		tmp.neighbors = inputData[i];
-		graph.push_back(tmp);
-	}
-
+	graph = getGtaph(inputData);
 	printModeGraph(graph);
 
 	vector<Top> coloringGraph;
