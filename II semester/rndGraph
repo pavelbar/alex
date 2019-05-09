@@ -9,6 +9,7 @@
 #include <sstream>
 #include <algorithm>
 #include <random>
+#include "time.h"
 
 using namespace std;
 
@@ -103,8 +104,6 @@ vector<Top> getGtaph(vector<vector<int>> inputData) {
 }
 
 int checkGraph(vector<Top> graph) {
-	cout << endl << endl << "-> =C=H=E=C=K= =G=R=A=P=H=";
-
 	if (graph.size() == 0) {
 		return 0;
 	}
@@ -142,6 +141,7 @@ string getRndColor(string colorA, string colorB, string colorC, string colorD) {
 
 vector<Top> rndColoring(vector<Top> graph) {
 	cout << endl << endl << "-> =C=O=L=O=R=I=N=G= =G=R=A=P=H=";
+	double t = clock();
 
 	while (true) {
 		if (checkGraph(graph)) {
@@ -151,6 +151,7 @@ vector<Top> rndColoring(vector<Top> graph) {
 			graph[i].color = getRndColor("white", "black", "red", "blue");
 		}
 	}
+	cout << endl << "time:" << (clock() - t) / CLK_TCK << " sec" << endl;
 	cout << endl << "Job done";
 	return graph;
 }
