@@ -8,6 +8,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include "time.h"
 
 using namespace std;
 
@@ -263,9 +264,12 @@ int main()
 	printModeGraph(graph);
 
 	vector<Top> coloringGraph;
+	double t = clock();
 	coloringGraph = coloring(graph);
+	double tFin = (clock() - t) / CLK_TCK;
 	printModeGraph(coloringGraph);
-
+	cout << endl << "time:" << tFin << " sec" << endl;
+	system("pause");
 	return 0;
 }
 
