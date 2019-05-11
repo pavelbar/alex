@@ -8,7 +8,6 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <random>
 #include "time.h"
 
 using namespace std;
@@ -90,6 +89,154 @@ void printModeGraph(vector<Top> graph) {
 	cout << endl;
 }
 
+vector<Top> coloring(vector<Top> igraph) {
+	cout << endl << endl << "-> =C=O=L=O=R=I=N=G= =G=R=A=P=H=";
+	vector<Top> sgraph = igraph;
+	sort(sgraph.begin(), sgraph.end());
+
+	//Red blue green white 
+
+	//RED ZONE
+	{
+		sgraph[0].color = "Red";
+		int index = sgraph[0].number;
+		igraph[index].color = "Red";
+
+		for (int i = 0; i < sgraph.size(); i++) {
+			bool flag = true;
+
+			for (int j = 0; j < sgraph[i].neighbors.size(); j++) {
+
+				if (sgraph[i].neighbors[j] == index) {
+					flag = false;
+				}
+
+				if (igraph[sgraph[i].neighbors[j]].color == "Red") {
+					flag = false;
+				}
+			}
+			if (flag) {
+				sgraph[i].color = "Red";
+				igraph[sgraph[i].number].color = "Red";
+			}
+		}
+	}
+	//RED ZONE END
+
+	//BLUE ZONE
+	{
+		int index = -1;
+		for (int i = 0; i < sgraph.size(); i++) {
+			if (sgraph[i].color == "-1") {
+				index = i;
+				break;
+			}
+		}
+
+		if (index == -1) {
+			cout << endl << "Job done";
+			return igraph;
+		}
+
+		sgraph[index].color = "Blue";
+		index = sgraph[index].number;
+		igraph[index].color = "Blue";
+
+
+		for (int i = 0; i < sgraph.size(); i++) {
+			bool flag = true;
+			for (int j = 0; j < sgraph[i].neighbors.size(); j++) {
+				if (sgraph[i].neighbors[j] == index) {
+					flag = false;
+				}
+				if (igraph[sgraph[i].neighbors[j]].color == "Blue") {
+					flag = false;
+				}
+			}
+			if ((flag) && (sgraph[i].color == "-1")) {
+				sgraph[i].color = "Blue";
+				igraph[sgraph[i].number].color = "Blue";
+			}
+		}
+	}
+	//BLUE ZONE END
+
+	//GREEN ZONE
+	{
+		int index = -1;
+		for (int i = 0; i < sgraph.size(); i++) {
+			if (sgraph[i].color == "-1") {
+				index = i;
+				break;
+			}
+		}
+
+		if (index == -1) {
+			cout << endl << "Job done";
+			return igraph;
+		}
+		sgraph[index].color = "green";
+		index = sgraph[index].number;
+		igraph[index].color = "green";
+
+		for (int i = 0; i < sgraph.size(); i++) {
+			bool flag = true;
+			for (int j = 0; j < sgraph[i].neighbors.size(); j++) {
+				if (sgraph[i].neighbors[j] == index) {
+					flag = false;
+				}
+				if (igraph[sgraph[i].neighbors[j]].color == "green") {
+					flag = false;
+				}
+			}
+			if ((flag) && (sgraph[i].color == "-1")) {
+				sgraph[i].color = "green";
+				igraph[sgraph[i].number].color = "green";
+			}
+		}
+	}
+	//GREEN ZONE END
+
+	//WHITE ZONE
+	{
+		int index = -1;
+		for (int i = 0; i < sgraph.size(); i++) {
+			if (sgraph[i].color == "-1") {
+				index = i;
+				break;
+			}
+		}
+
+		if (index == -1) {
+			cout << endl << "Job done";
+			return igraph;
+		}
+		sgraph[index].color = "white";
+		index = sgraph[index].number;
+		igraph[index].color = "white";
+
+		for (int i = 0; i < sgraph.size(); i++) {
+			bool flag = true;
+			for (int j = 0; j < sgraph[i].neighbors.size(); j++) {
+				if (sgraph[i].neighbors[j] == index) {
+					flag = false;
+				}
+				if (igraph[sgraph[i].neighbors[j]].color == "white") {
+					flag = false;
+				}
+			}
+			if ((flag) && (sgraph[i].color == "-1")) {
+				sgraph[i].color = "white";
+				igraph[sgraph[i].number].color = "white";
+			}
+		}
+	}
+	//WHITE ZONE END
+
+	cout << endl << "Job done";
+	return igraph;
+}
+
 vector<Top> getGtaph(vector<vector<int>> inputData) {
 	vector<Top> graph;
 	for (int i = 0; i < inputData.size(); i++) {
@@ -100,59 +247,6 @@ vector<Top> getGtaph(vector<vector<int>> inputData) {
 		tmp.neighbors = inputData[i];
 		graph.push_back(tmp);
 	}
-	return graph;
-}
-
-int checkGraph(vector<Top> graph) {
-	if (graph.size() == 0) {
-		return 0;
-	}
-
-	for (int i = 0; i < graph.size(); i++) {
-		for (int j = 0; j < graph[i].neighbors.size(); j++) {
-			if (graph[i].color == graph[graph[i].neighbors[j]].color) {
-				return 0;
-			}
-		}
-	}
-	return 1;
-}
-
-string getRndColor(string colorA, string colorB, string colorC, string colorD) {
-	random_device rd;
-	mt19937 generator(rd());
-	uniform_int_distribution<> distribution(0, 3);
-
-	int val = distribution(generator);
-	if (val == 0) {
-		return colorA;
-	}
-	if (val == 1) {
-		return colorB;
-	}
-	if (val == 2) {
-		return colorC;
-	}
-	if (val == 3) {
-		return colorD;
-	}
-	return "-777";
-}
-
-vector<Top> rndColoring(vector<Top> graph) {
-	cout << endl << endl << "-> =C=O=L=O=R=I=N=G= =G=R=A=P=H=";
-	double t = clock();
-
-	while (true) {
-		if (checkGraph(graph)) {
-			break;
-		}
-		for (int i = 0; i < graph.size(); i++) {
-			graph[i].color = getRndColor("white", "black", "red", "blue");
-		}
-	}
-	cout << endl << "time:" << (clock() - t) / CLK_TCK << " sec" << endl;
-	cout << endl << "Job done";
 	return graph;
 }
 
@@ -170,9 +264,12 @@ int main()
 	printModeGraph(graph);
 
 	vector<Top> coloringGraph;
-	coloringGraph = rndColoring(graph);
+	double t = clock();
+	coloringGraph = coloring(graph);
+	cout << endl << "time:" << (clock() - t) / CLK_TCK << " sec" << endl;
 	printModeGraph(coloringGraph);
-
+	cout << endl << "time:" << (clock() - t) / CLK_TCK << " sec" << endl;
 	system("pause");
 	return 0;
 }
+
