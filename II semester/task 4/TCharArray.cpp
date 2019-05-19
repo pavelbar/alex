@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "TCharArray.h"
 #include <stdio.h>//NULL
 #include <iostream>
@@ -24,7 +24,7 @@ TCharArray::TCharArray() : len(0)
 TCharArray::TCharArray(const char* arr)
 {
 	len = (*this).GetStrLen(arr);
-	pMem = new char[len+1];
+	pMem = new char[len + 1];
 	if (pMem != NULL)
 		for (size_t i = 0; i < len + 1; i++) {
 			pMem[i] = arr[i];
@@ -48,7 +48,7 @@ TCharArray::TCharArray(const int nlen) : len(nlen)
 TCharArray::TCharArray(const TCharArray & arr)
 {
 	len = arr.len;
-	pMem = new char[len+1];
+	pMem = new char[len + 1];
 	if (pMem != NULL) {
 		for (size_t i = 0; i < len; i++) {
 			pMem[i] = arr.pMem[i];
@@ -108,11 +108,17 @@ int TCharArray::operator!=(const TCharArray &arr) const
 
 TCharArray & TCharArray::operator=(const TCharArray & arr)
 {
-	if (pMem != arr.pMem) {
-		len = arr.len;
-		delete[]pMem;
-		pMem = new char[len];
-		for (size_t i = 0; i < len; i++) {
+	if (this != &arr) {
+		if (arr.len != len) {
+			if (len != 0) {
+				delete[] pMem;
+			}
+			len = 0;
+			pMem = nullptr;
+			pMem = new char[arr.len];
+			len = arr.len;
+		}
+		for (size_t i = 0; i < arr.len; i++) {
 			pMem[i] = arr.pMem[i];
 		}
 	}
