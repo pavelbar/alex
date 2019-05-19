@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "MString.h"
 
 MString::MString(const char* arr) : TCharArray(arr)
@@ -58,7 +57,9 @@ MString MString::GetSubString(const int pos) const
 		j++;
 	}
 	buf[nlen] = '\0';
-	return MString(buf);
+	MString res = MString(buf);
+	delete[] buf;
+	return res;
 }
 
 int MString::Find(const char symbol) const
@@ -96,7 +97,9 @@ MString MString::GetSubString(const int spos, const int fpos) const
 		j++;
 	}
 	buf[nlen] = '\0';
-	return MString(buf);
+	MString res = MString(buf);
+	delete[] buf;
+	return res;
 }
 
 int MString::ToInteger(void) const
