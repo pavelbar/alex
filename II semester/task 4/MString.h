@@ -20,4 +20,3 @@ public:
 	MString GetSubString(const int spos, const int fpos) const;
 	int ToInteger(void) const;
 };
-
