@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "TicketOffice.h"
 
 MString TicketOffice::GetTicketNumber(void) const
