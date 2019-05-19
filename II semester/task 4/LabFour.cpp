@@ -1,6 +1,4 @@
-//Лабораторная работа №4. Наследование, перегрузка операций
 
-#include "pch.h"
 #include <iostream>
 #include <fstream>
 #include <vector> 
@@ -51,7 +49,10 @@ void parserCliArguments(int argc, char** argv, MString &fileName, int &N, MStrin
 						if ((subject[len - 1] == 'n') && (subject[len - 2] == 'i') && (subject[len - 3] == 'b') && (subject[len - 4] == '.')) {
 							int countDelim = subject.GetCountdelim(DELIM);
 							if (countDelim == 1) {
-								fileName = subject.GetSubString(1 + subject.Find(DELIM));
+								MString tmp(subject.GetSubString(1 + subject.Find(DELIM)));
+								MString tmpNEW;
+								tmpNEW = tmp;
+								fileName = tmpNEW;
 								MString tmpN = subject.GetSubString(0, subject.Find(DELIM));
 								N = tmpN.ToInteger();
 								if (vAllCliArguments[i] == "-c") {
